@@ -1,0 +1,303 @@
+fileFormatVersion: 2
+guid: be7e012c092317d45b39631f228101ac
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      74: -7881739814215078984
+    second: 0_T-Pose
+  - first:
+      74: 3369454650447058872
+    second: 0_T-Pose(0)
+  - first:
+      74: -203655887218126122
+    second: mixamo.com
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eyes_Pbr
+    second: {fileID: 2100000, guid: 5e31e48905252b54fb2b1d4461800b4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hair_Pbr
+    second: {fileID: 2100000, guid: 28cad15cbe4503441b321a02c4a96f18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Man_Pbr
+    second: {fileID: 2100000, guid: a07f15d380d6c0b4b968b5315b5f2011, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T_shirt1_Pbr
+    second: {fileID: 2100000, guid: d17e7b0787887af4189e1f2a7e90f7d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T_shirt2_Pbr
+    second: {fileID: 2100000, guid: bc098cff1a50ae049b2b5f85b13abc75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard10_Pbr
+    second: {fileID: 2100000, guid: 49514968160dcc54fb0a43caec7a18c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard1_Pbr
+    second: {fileID: 2100000, guid: 917168ae3177fa0478c153912780b28f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard2_Pbr
+    second: {fileID: 2100000, guid: 3c7b2554a7b603243a4b93b55df2168c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard3_Pbr
+    second: {fileID: 2100000, guid: e3fa995d74f2da640a233887cf6d0be7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard4_Pbr
+    second: {fileID: 2100000, guid: 9e7863106c82fcc44b5736d2ca777422, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard5_Pbr
+    second: {fileID: 2100000, guid: 0bd3425543ace72418661a0024c89b00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard6_Pbr
+    second: {fileID: 2100000, guid: ad6040426860c7045bc8b63474cde2c7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard7_Pbr
+    second: {fileID: 2100000, guid: feb2ca9d2cb0c9f49ae09f742e4f231b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard8_Pbr
+    second: {fileID: 2100000, guid: 28f3e664b51a54b4cb299445ceae6fd3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beard9_Pbr
+    second: {fileID: 2100000, guid: e84a452f66e8bb643af40325c96222f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: boots1_Pbr
+    second: {fileID: 2100000, guid: a4e6acbf966b61a4e80678d7de4780dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous10_Pbr
+    second: {fileID: 2100000, guid: 7d3e01cda03a7b44490b158ba3f03b36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous1_Pbr
+    second: {fileID: 2100000, guid: 1aedbb84447520d44944b1cf99d7b50a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous2_Pbr
+    second: {fileID: 2100000, guid: f7223570558cde64eb88b5bb12a34d15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous3_Pbr
+    second: {fileID: 2100000, guid: cfdf12a128a350348a7830200c8fa78e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous4_Pbr
+    second: {fileID: 2100000, guid: f3c77777a69d59a4eb10e9863413fe8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous5_Pbr
+    second: {fileID: 2100000, guid: 7eff4b736535d8e449dfa40276523b50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous6_Pbr
+    second: {fileID: 2100000, guid: f7b146057bb4d3946997b6fd1ca79c0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous7_Pbr
+    second: {fileID: 2100000, guid: 3b67667dc3be7044ebc0dbc5378f7fb7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous8_Pbr
+    second: {fileID: 2100000, guid: 7a50478830d3776429f4a8b16b96b496, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: brous9_Pbr
+    second: {fileID: 2100000, guid: b748de1e778722943b48e281c35ab2a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: coat_Pbr
+    second: {fileID: 2100000, guid: 0df3614508315dc46a8d42ee11294f3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair3_Pbr
+    second: {fileID: 2100000, guid: 0c43b40f77461f7449f6470406b7c017, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair4_Pbr
+    second: {fileID: 2100000, guid: e8bd477380bb6af47a5e04ea208ed13f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair_Pbr
+    second: {fileID: 2100000, guid: baa661271e23e284c98b9c1e0f03db3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hoody_Pbr
+    second: {fileID: 2100000, guid: e4d7bf706e6312240adc14e2ad4c2375, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: jacket_Pbr
+    second: {fileID: 2100000, guid: e70fba87245e60f4bad8b5b4d2bb6ad3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pants1_Pbr
+    second: {fileID: 2100000, guid: 5c8dd535607e7314ca199529a875785e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shirt2_Pbr
+    second: {fileID: 2100000, guid: ad3dc8d703911c743bf717c7145ed79b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shirt3_Pbr
+    second: {fileID: 2100000, guid: 31f36b3823a2a91419b7bd0422e4e10d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shirt_Pbr
+    second: {fileID: 2100000, guid: 92a95c002ef2d6e44be691fd95c9c463, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: turtleneck_Pbr
+    second: {fileID: 2100000, guid: 0391652a4f4ae644db7df4c49095024b, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
