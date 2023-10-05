@@ -6,9 +6,14 @@ using UnityEngine.InputSystem;
 
 public class activateSpellcating : MonoBehaviour
 {
+	// Spell timer 
+	private bool startTimer = false;
+
+
     [SerializeField] GameObject handPointer;
     [SerializeField] GameObject handPointer2;
 	[SerializeField] GameObject hitObj;
+    [SerializeField] GameObject SpellStartPoint;
 
 	[Header("Action Input")]
 	[SerializeField] private InputActionProperty spellCastTrigger;
@@ -19,10 +24,7 @@ public class activateSpellcating : MonoBehaviour
     private bool isHeldPrev = false;
     private bool isSpellActive = false;
     private bool isCastSpell = false;
-
-    // this is for the case of debuging
-    private float spellcastdelay = 10;
-    private float cast = 0;
+    private bool isFirstCast = true;
 
 	[Header("Spell Cast Board")]
 	[SerializeField] GameObject spellBoard;
@@ -32,6 +34,13 @@ public class activateSpellcating : MonoBehaviour
     [Header("Spell Prefabs")]
     [SerializeField] GameObject IceWall;
     [SerializeField] LayerMask wallLayer;
+    [SerializeField] GameObject FireBall;
+
+
+	[SerializeField] float lowestSpellScore = 0.6f;
+	private DollarRecognizer.Result castResult;
+
+	private GameObject fireballspell = null;
 
 
 	// Start is called before the first frame update
@@ -43,7 +52,22 @@ public class activateSpellcating : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cast <= 0)
+		//enters the casting result
+		if (castResult.Match.Name != null)
+		{
+			if (castResult.Score < lowestSpellScore) return;
+			switch (castResult.Match.Name)
+			{
+				case "Ice":
+					castWallSpell();
+					break;
+				case "Fire":
+					castFireSpell();
+					break;
+			}
+		}
+		// reads the current grip 
+        else
         {
 			bool currHeld = spellCastTrigger.action.inProgress;
 			isCastSpell = spellCastGrip.action.inProgress;
@@ -53,41 +77,53 @@ public class activateSpellcating : MonoBehaviour
 			{
 				isSpellActive = !isSpellActive;
 			}
+			if (isSpellActive)
+			{
+				//castWallSpell();
+				SpellBoard();
+			}
+			else
+			{
+				CallNClear();
+			}
+
 
 
 			isHeldPrev = currHeld;
+		}
 
-			if (isSpellActive)
-			{
-				//if (!spellBoard.activeSelf) spellBoard.SetActive(true);
-				//castWallSpell();
-				Ray ray = pointerRayCast();
+        
+    }
 
-				float rayLength = 5f;
-				RaycastHit hit;
+	private void SpellBoard()
+	{
+		if (!spellCastUI.trackPosition) spellCastUI.trackPosition = true;
+		Ray ray = pointerRayCast();
 
-				ray.direction = handPointer.transform.rotation * ray.direction;
-				if (Physics.Raycast(ray, out hit, rayLength, castLayer))
-				{
-					Debug.DrawLine(ray.origin, hit.point, Color.red);
-					spellCastUI.ChangeTracerPos(hit.point);
-				}
-				else
-				{
-					Debug.DrawLine(ray.origin, ray.origin + ray.direction * 40, Color.green);
-				}
+		float rayLength = 5f;
+		RaycastHit hit;
 
-
-
-			}
-
+		ray.direction = handPointer.transform.rotation * ray.direction;
+		if (Physics.Raycast(ray, out hit, rayLength, castLayer))
+		{
+			Debug.DrawLine(ray.origin, hit.point, Color.red);
+			spellCastUI.ChangeTracerPos(hit.point);
 		}
 		else
 		{
-			cast -= Time.deltaTime;
+			Debug.DrawLine(ray.origin, ray.origin + ray.direction * 40, Color.green);
 		}
-        
-    }
+	}
+
+	private void CallNClear()
+	{
+		if (spellCastUI.trackPosition)
+		{
+			castResult = spellCastUI.callDoller();
+			spellCastUI.trackPosition = false;
+			spellCastUI.ClearPositions();
+		}
+	}
 
 	private void castWallSpell() // renanme this function to a more proper name
 	{
@@ -103,11 +139,9 @@ public class activateSpellcating : MonoBehaviour
 
 			hitObj.transform.position = hit.point;
 			Debug.DrawLine(ray.origin, hit.point, Color.red);
-			//Debug.Log("Hit: " + hit.collider.name);
 
-			if (isCastSpell)
+			if (isCastSpell && isFirstCast)
             {
-				cast = spellcastdelay;
                 castWall(hit);
             }
 		}
@@ -134,12 +168,16 @@ public class activateSpellcating : MonoBehaviour
 		wallCom.startPoint = hit.point;
 		wallCom.handGrip = spellCastGrip;
 		wallCom.pointerPosition = handPointer;
-        
+        isFirstCast = false;
     }
 
-	private void castBallFire()
+	private void castFireSpell()
 	{
-
+		if (fireballspell == null)
+		{
+			fireballspell = Instantiate(FireBall);
+			fireballspell.GetComponent<Fireball>().holdPos = SpellStartPoint;
+		}
 	}
 
 }
