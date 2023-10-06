@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static DollarRecognizer;
 
 public class SpellCastUI : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class SpellCastUI : MonoBehaviour
 	[SerializeField] public List<Vector2> positions;
 
     private Vector2 lastPos = Vector2.zero;
+
+    [SerializeField] bool canAddSpell;
 
 	// Start is called before the first frame update
 	void Start()
@@ -53,8 +56,23 @@ public class SpellCastUI : MonoBehaviour
     {
 		DollarRecognizer dr = new DollarRecognizer();
 
-		return dr.Recognize(positions);
+        Result temp = dr.Recognize(positions);
+
+        if (temp.Match.Name == "IceSP") print("IceSP has been casted");
+        return temp;
 	}
+
+    public void RecordSpell()
+    {
+        if (positions.Count <= 0) return;
+
+        DollarRecognizer dr = new DollarRecognizer();
+
+		Unistroke us = dr.SavePattern("IceSP", positions);
+
+        Debug.Log(us.Name);
+        
+    }
 
     public void ChangeTracerPos(Vector3 pos)
     {

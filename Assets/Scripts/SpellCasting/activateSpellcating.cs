@@ -12,6 +12,7 @@ public class activateSpellcating : MonoBehaviour
 
     [SerializeField] GameObject handPointer;
     [SerializeField] GameObject handPointer2;
+    [SerializeField] GameObject handPointer3;
 	[SerializeField] GameObject hitObj;
     [SerializeField] GameObject SpellStartPoint;
 
@@ -20,10 +21,12 @@ public class activateSpellcating : MonoBehaviour
 	[SerializeField] private InputActionProperty spellCastGrip;
 	[SerializeField] private InputActionProperty handPosition;
 	[SerializeField] private InputActionProperty handRotation;
+	[SerializeField] private InputActionProperty handPrimaryButton;
 
     private bool isHeldPrev = false;
     private bool isSpellActive = false;
     private bool isCastSpell = false;
+    private bool didCastJustEnd = false;
     private bool isFirstCast = true;
 
 	[Header("Spell Cast Board")]
@@ -39,6 +42,7 @@ public class activateSpellcating : MonoBehaviour
 
 	[SerializeField] float lowestSpellScore = 0.6f;
 	private DollarRecognizer.Result castResult;
+	private bool canRecordSpell = false;
 
 	private GameObject fireballspell = null;
 
@@ -47,53 +51,79 @@ public class activateSpellcating : MonoBehaviour
 	void Start()
     {
 		spellCastUI = spellBoard.GetComponent<SpellCastUI>();
+		spellBoard.SetActive(false);
+		castResult = new DollarRecognizer.Result();
     }
 
     // Update is called once per frame
     void Update()
     {
+
 		//enters the casting result
-		if (castResult.Match.Name != null)
-		{
-			if (castResult.Score < lowestSpellScore) return;
-			switch (castResult.Match.Name)
-			{
-				case "Ice":
-					castWallSpell();
-					break;
-				case "Fire":
-					castFireSpell();
-					break;
-			}
-		}
+		//if (castResult.Match.Name != null)
+		//{
+		//	if (castResult.Score < lowestSpellScore) return;
+		//	switch (castResult.Match.Name)
+		//	{
+		//		case "Ice":
+		//			castWallSpell();
+		//			break;
+		//		case "Fire":
+		//			castFireSpell();
+		//			break;
+		//	}
+		//}
 		// reads the current grip 
-        else
-        {
-			bool currHeld = spellCastTrigger.action.inProgress;
-			isCastSpell = spellCastGrip.action.inProgress;
-			Vector3 pos = handPosition.action.ReadValue<Vector3>();
+		bool currHeld = spellCastTrigger.action.inProgress;
+		isCastSpell = spellCastGrip.action.inProgress;
+		Vector3 pos = handPosition.action.ReadValue<Vector3>();
 
-			if (currHeld != isHeldPrev)
-			{
-				isSpellActive = !isSpellActive;
-			}
-			if (isSpellActive)
-			{
-				//castWallSpell();
-				SpellBoard();
-			}
-			else
-			{
-				CallNClear();
-			}
-
-
-
-			isHeldPrev = currHeld;
+		if (currHeld != isHeldPrev)
+		{
+			isSpellActive = !isSpellActive;
 		}
 
-        
-    }
+
+		if (isSpellActive)
+		{
+			if (!spellBoard.activeSelf)
+			{
+				spellBoard.transform.parent.gameObject.transform.rotation = handPointer3.transform.rotation;
+
+				spellBoard.transform.parent.gameObject.transform.position = handPointer3.transform.position;
+				
+			}
+			spellBoard.SetActive(true);
+
+			//castWallSpell();
+			SpellBoard();
+		}
+		else
+		{
+			if (spellBoard.activeSelf) spellBoard.SetActive(false);
+
+			if (canRecordSpell && currHeld != isHeldPrev)
+			{
+				Debug.Log("Recorded");
+				spellCastUI.RecordSpell();
+				spellCastUI.ClearPositions();
+			}
+			else if (currHeld != isHeldPrev) CallNClear();
+		}
+
+
+
+		isHeldPrev = currHeld;
+
+		if (handPrimaryButton.action.inProgress)
+		{
+			canRecordSpell = true;
+			Debug.Log("Can Record Spell: " + canRecordSpell);
+		}
+		else canRecordSpell = false;
+			
+
+	}
 
 	private void SpellBoard()
 	{
