@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class activateSpellcating : MonoBehaviour
 {
-	// Spell timer 
-	private bool startTimer = false;
-
-
     [SerializeField] GameObject handPointer;
     [SerializeField] GameObject handPointer2;
     [SerializeField] GameObject handPointer3;
@@ -24,10 +21,9 @@ public class activateSpellcating : MonoBehaviour
 	[SerializeField] private InputActionProperty handPrimaryButton;
 
     private bool isHeldPrev = false;
-    private bool isSpellActive = false;
-    private bool isCastSpell = false;
-    private bool didCastJustEnd = false;
+    private bool isSpellBoardActive = false;
     private bool isFirstCast = true;
+    private bool isSpellActive = false;
 
 	[Header("Spell Cast Board")]
 	[SerializeField] GameObject spellBoard;
@@ -59,43 +55,29 @@ public class activateSpellcating : MonoBehaviour
     void Update()
     {
 
-		//enters the casting result
-		//if (castResult.Match.Name != null)
-		//{
-		//	if (castResult.Score < lowestSpellScore) return;
-		//	switch (castResult.Match.Name)
-		//	{
-		//		case "Ice":
-		//			castWallSpell();
-		//			break;
-		//		case "Fire":
-		//			castFireSpell();
-		//			break;
-		//	}
-		//}
-		// reads the current grip 
 		bool currHeld = spellCastTrigger.action.inProgress;
-		isCastSpell = spellCastGrip.action.inProgress;
 		Vector3 pos = handPosition.action.ReadValue<Vector3>();
 
 		if (currHeld != isHeldPrev)
 		{
-			isSpellActive = !isSpellActive;
+			isSpellBoardActive = !isSpellBoardActive;
 		}
-
 
 		if (isSpellActive)
 		{
-			if (!spellBoard.activeSelf)
+			switch (castResult.Match.Name)
 			{
-				spellBoard.transform.parent.gameObject.transform.rotation = handPointer3.transform.rotation;
-
-				spellBoard.transform.parent.gameObject.transform.position = handPointer3.transform.position;
-				
+				case "IceSP":
+					castWallSpell();
+					break;
+				case "FireSP":
+					break;
 			}
-			spellBoard.SetActive(true);
-
-			//castWallSpell();
+		}
+		else if (isSpellBoardActive)
+		{
+			if (!isFirstCast) isFirstCast = true;
+			setSpellBoard();
 			SpellBoard();
 		}
 		else
@@ -111,18 +93,28 @@ public class activateSpellcating : MonoBehaviour
 			else if (currHeld != isHeldPrev) CallNClear();
 		}
 
-
-
 		isHeldPrev = currHeld;
 
 		if (handPrimaryButton.action.inProgress)
 		{
 			canRecordSpell = true;
-			Debug.Log("Can Record Spell: " + canRecordSpell);
 		}
 		else canRecordSpell = false;
 			
 
+	}
+
+	// -- Helper -- \\
+
+	private void setSpellBoard()
+	{
+		if (!spellBoard.activeSelf)
+		{
+			spellBoard.transform.parent.gameObject.transform.rotation = handPointer3.transform.rotation;
+			spellBoard.transform.parent.gameObject.transform.position = handPointer3.transform.position;
+
+		}
+		spellBoard.SetActive(true);
 	}
 
 	private void SpellBoard()
@@ -152,8 +144,26 @@ public class activateSpellcating : MonoBehaviour
 			castResult = spellCastUI.callDoller();
 			spellCastUI.trackPosition = false;
 			spellCastUI.ClearPositions();
+
+			if (castResult.Score > .6) isSpellActive = true;
 		}
 	}
+
+	private Ray pointerRayCast()
+	{
+		Vector3 dir = handPointer.transform.localPosition - handPointer2.transform.localPosition;
+
+		Ray ray = new Ray(transform.position, dir);
+
+		return ray;
+	}
+
+	public void ResetFirstSpell()
+	{
+		isSpellActive = false;
+	}
+
+	// -- Spell -- \\
 
 	private void castWallSpell() // renanme this function to a more proper name
 	{
@@ -170,7 +180,7 @@ public class activateSpellcating : MonoBehaviour
 			hitObj.transform.position = hit.point;
 			Debug.DrawLine(ray.origin, hit.point, Color.red);
 
-			if (isCastSpell && isFirstCast)
+			if (isFirstCast && spellCastGrip.action.inProgress)
             {
                 castWall(hit);
             }
@@ -182,15 +192,6 @@ public class activateSpellcating : MonoBehaviour
 		
 	}
 
-	private Ray pointerRayCast()
-	{
-		Vector3 dir = handPointer.transform.localPosition - handPointer2.transform.localPosition;
-
-		Ray ray = new Ray(transform.position, dir);
-
-		return ray;
-	}
-
     private void castWall(RaycastHit hit)
     {
         GameObject wall = Instantiate(IceWall);
@@ -198,7 +199,13 @@ public class activateSpellcating : MonoBehaviour
 		wallCom.startPoint = hit.point;
 		wallCom.handGrip = spellCastGrip;
 		wallCom.pointerPosition = handPointer;
+		wallCom.asc = this;
         isFirstCast = false;
+
+		wall.transform.rotation = Quaternion.LookRotation(Vector3.Cross(wall.transform.right, hit.normal), hit.normal);
+		wallCom.upRotation = wall.transform.rotation;
+
+		wallCom.normal = hit.normal;
     }
 
 	private void castFireSpell()
