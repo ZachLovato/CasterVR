@@ -2,9 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.XR.CoreUtils.Datums;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Fireball : MonoBehaviour
 {
+	enum FireballState
+	{
+		SPAWNING,
+		HOLDING,
+		FLYING
+	};
+
+	private FireballState state;
+
+
     private Rigidbody rb;
 
 	[Header("Gravity")]
@@ -12,7 +23,6 @@ public class Fireball : MonoBehaviour
     private bool gravOn = false;
 
 	[HideInInspector] public GameObject holdPos;
-	private Vector3 position;
 
 	[Header("Hit Layers")]
 	[SerializeField] LayerMask GroundLayer;
@@ -22,14 +32,24 @@ public class Fireball : MonoBehaviour
 	[SerializeField] GameObject AoEOBJ;
 	[SerializeField] float radius = 0;
 	[SerializeField] private float AoEDamage = 5;
+	[SerializeField] float DoTFrameDelay = 30;
+	[SerializeField] float DoTDurationSeconds = 10;
+
+	// Direct Damage
 	[SerializeField] private float DDamage = 30;
 
 	[Header("Destruction Timer")]
 	[SerializeField] float destroyDelay = 0;
 	[SerializeField] bool isFlying = false;
-	bool isTimerOn = false;
 	DestoryTimer dt;
 
+	public InputActionProperty spellCastGrip;
+
+	[SerializeField] private float forceScale = 1;
+	public activateSpellcating asc;
+
+	private Vector3 prevPos;
+	bool doOnce = true;
 
 	// TODO: have the object change states where it stays near the hand and where it flyies basied on velocity
 
@@ -45,21 +65,36 @@ public class Fireball : MonoBehaviour
     void Update()
     {
 
-		if (isFlying)
+		switch (state)
 		{
-			isGravOn();
+			case FireballState.SPAWNING:
+				transform.position = holdPos.transform.position;
 
-			if (!isTimerOn)
-			{
-				dt = gameObject.AddComponent<DestoryTimer>();
-				dt.DestoryDelay = destroyDelay;
-			}
+				if (spellCastGrip.action.inProgress) state = FireballState.HOLDING;
+				break;
+			case FireballState.HOLDING:
+				transform.position = holdPos.transform.position;
+				if (!spellCastGrip.action.inProgress) state = FireballState.FLYING;
+				break;
+			case FireballState.FLYING:
+				
+				isGravOn();
+				if (doOnce)
+				{
+					rb.AddForce(Vector3.Normalize(transform.position - prevPos), ForceMode.Impulse);
+					asc.ResetFirstSpell();
+					doOnce = false;
+					DestoryTimer dt = gameObject.AddComponent<DestoryTimer>();
+					dt.useTimer = true;
+					dt.DestoryDelay = destroyDelay;
+					gameObject.GetComponent<DestoryTimer>().useTimer = true;
+				}
+				
+				break;
 		}
-		else
-		{
-			transform.position = holdPos.transform.position;
-		}
+		//print("Fireball state: " + state);
 
+		prevPos = transform.position;
 	}
 
     private void isGravOn()
@@ -75,20 +110,27 @@ public class Fireball : MonoBehaviour
 			}
 		}
 	}
-
-	private void OnTriggerEnter(Collider other)
+	private void OnCollisionEnter(Collision collision)
 	{
-		if (other.gameObject.layer == GroundLayer)
+		if (collision.gameObject.layer == 31)
 		{
 			GameObject go = Instantiate(AoEOBJ, transform);
 
+			go.GetComponent<DoTSource>().setDoTStats(DoTDurationSeconds, DDamage, DoTFrameDelay);
+
+			go.transform.rotation = Quaternion.identity;
+			go.transform.localScale = new Vector3(radius, 1, radius);
+
+			transform.DetachChildren();
+			
+			Destroy(this.gameObject);
 		}
-		else if (other.gameObject.layer == HostileLayer)
+		else if (collision.gameObject.layer == 10)
 		{
-			other.GetComponent<Health>().AddHealth(-DDamage);
+			collision.gameObject.GetComponent<Health>().AddHealth(-DDamage);
 			dt.useTimer = false;
 			Destroy(this.gameObject);
-		}		
+		}
 	}
 
 }

@@ -15,13 +15,19 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+		destroyTimer = DestroyDelay;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isDead)
+        {
+            if (destroyTimer < 0)
+            {
+                gameObject.AddComponent<DestoryTimer>().DestoryDelay = destroyTimer;
+            }
+        }
     }
 
 

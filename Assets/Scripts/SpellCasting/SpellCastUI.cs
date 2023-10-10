@@ -22,6 +22,7 @@ public class SpellCastUI : MonoBehaviour
     DollarRecognizer dr;
 
 	[SerializeField] SpellCords sc;
+	[SerializeField] string spellName;
 
     [SerializeField] public SpellCords[] scIniz;
 
@@ -63,18 +64,18 @@ public class SpellCastUI : MonoBehaviour
 
     public DollarRecognizer.Result callDoller()
     {
+        Result r = dr.Recognize(positions);
 
-        Result temp = dr.Recognize(positions);
-
-        if (temp.Match.Name == "IceSP") print("IceSP has been casted");
-        return temp;
+        print(r.Match.Name)
+            
+        ; return r;
 	}
 
     public void RecordSpell()
     {
         if (positions.Count <= 0) return;
 
-		Unistroke us = dr.SavePattern("IceSP", positions);
+		Unistroke us = dr.SavePattern(spellName, positions);
 
         modifySO(us.Name, positions);
 

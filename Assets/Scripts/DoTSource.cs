@@ -5,51 +5,54 @@ using UnityEngine;
 
 public class DoTSource : MonoBehaviour
 {
-    float duration;
-    float damage;
-    bool startDoTTimer;
+    [SerializeField] float duration;
+	[SerializeField] float damage;
+	[SerializeField] float damageTickDelay;
 
-    List<KeyValuePair<GameObject, DoTEffect>> dotPairs;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    List<GameObject> gos;
+    List<DoTEffect> dots;
 
 	private void OnTriggerEnter(Collider other)
 	{
-		DoTEffect dot = other.AddComponent<DoTEffect>();
+        if (other.gameObject.tag == "Hostile")
+        {
+            DoTEffect dot = other.AddComponent<DoTEffect>();
 
-        dot.damage = damage;
-        dot.duration = duration;
+            dot.damage = damage;
+            dot.duration = duration;
+            dot.framePerDamageTick = damageTickDelay;
 
-        KeyValuePair<GameObject, DoTEffect> pair = new KeyValuePair<GameObject, DoTEffect>(other.gameObject, dot);
-
-
-        dotPairs.Add(pair);
+            gos.Add(other.gameObject);
+            dots.Add(dot);
+        }
+		
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
         int removeLoc = -1;
 
-        for (int i = 0; i < dotPairs.Count; i++)
+        for (int i = 0; i < gos.Count; i++)
         {
-            if (dotPairs[i].Key == other.gameObject)
+            if (gos[i] == other.gameObject)
             {
                 removeLoc = i;
-                dotPairs[i].Value.startDoTTimer = true;
+				dots[i].startDoTTimer = true;
                 break;
             }
         }
 
-        if (removeLoc != -1) dotPairs.RemoveAt(removeLoc);
+        if (removeLoc != -1)
+        {
+            gos.RemoveAt(removeLoc);
+            dots.RemoveAt(removeLoc);
+        }
 	}
+
+    public void setDoTStats(float durationSeconds, float directDamage, float delayFrame)
+    {
+        duration = durationSeconds;
+        damage = directDamage;
+        damageTickDelay = delayFrame;
+    }
 }

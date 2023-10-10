@@ -7,6 +7,20 @@ using UnityEngine.Rendering.Universal;
 
 public class activateSpellcating : MonoBehaviour
 {
+	enum CastingState
+	{
+		SPELL,
+		CASTING,
+		RECORDING,
+		RECORDED,
+		CLEARING,
+		NORMAL
+	};
+
+	[Header("State")]
+	[SerializeField] CastingState state;
+
+	[Header("GameObjects")]
     [SerializeField] GameObject handPointer;
     [SerializeField] GameObject handPointer2;
     [SerializeField] GameObject handPointer3;
@@ -19,11 +33,10 @@ public class activateSpellcating : MonoBehaviour
 	[SerializeField] private InputActionProperty handPosition;
 	[SerializeField] private InputActionProperty handRotation;
 	[SerializeField] private InputActionProperty handPrimaryButton;
+	[SerializeField] private InputActionProperty handSecondaryButton;
 
-    private bool isHeldPrev = false;
-    private bool isSpellBoardActive = false;
     private bool isFirstCast = true;
-    private bool isSpellActive = false;
+	private bool isRecordingSpell = false;
 
 	[Header("Spell Cast Board")]
 	[SerializeField] GameObject spellBoard;
@@ -35,10 +48,8 @@ public class activateSpellcating : MonoBehaviour
     [SerializeField] LayerMask wallLayer;
     [SerializeField] GameObject FireBall;
 
-
 	[SerializeField] float lowestSpellScore = 0.6f;
 	private DollarRecognizer.Result castResult;
-	private bool canRecordSpell = false;
 
 	private GameObject fireballspell = null;
 
@@ -49,6 +60,7 @@ public class activateSpellcating : MonoBehaviour
 		spellCastUI = spellBoard.GetComponent<SpellCastUI>();
 		spellBoard.SetActive(false);
 		castResult = new DollarRecognizer.Result();
+		state = CastingState.NORMAL;
     }
 
     // Update is called once per frame
@@ -58,50 +70,125 @@ public class activateSpellcating : MonoBehaviour
 		bool currHeld = spellCastTrigger.action.inProgress;
 		Vector3 pos = handPosition.action.ReadValue<Vector3>();
 
-		if (currHeld != isHeldPrev)
+		switch (state)
 		{
-			isSpellBoardActive = !isSpellBoardActive;
-		}
+			case CastingState.SPELL:
+				switch (castResult.Match.Name)
+				{
+					case "IceSP":
+						wallCastChecker();
+						break;
+					case "FireSP":
+						castFireSpell();
+						break;
+					default: 
+						break;
+				}
 
-		if (isSpellActive)
-		{
-			switch (castResult.Match.Name)
-			{
-				case "IceSP":
-					castWallSpell();
-					break;
-				case "FireSP":
-					break;
-			}
-		}
-		else if (isSpellBoardActive)
-		{
-			if (!isFirstCast) isFirstCast = true;
-			setSpellBoard();
-			SpellBoard();
-		}
-		else
-		{
-			if (spellBoard.activeSelf) spellBoard.SetActive(false);
+				if (handSecondaryButton.action.inProgress)
+				{
+					state = CastingState.NORMAL;
+					fireballspell = null;
 
-			if (canRecordSpell && currHeld != isHeldPrev)
-			{
+				}
+
+				break;
+			case CastingState.CASTING:
+
+				if (!isFirstCast) isFirstCast = true;
+				
+				setSpellBoard();
+				SpellBoard();
+				
+				if (!currHeld) state = CastingState.CLEARING;
+				
+				break;
+			case CastingState.RECORDING:
+				
+				setSpellBoard();
+				SpellBoard();
+
+				if (!currHeld) state = CastingState.RECORDED;
+
+				break;
+			case CastingState.RECORDED:
 				Debug.Log("Recorded");
+
 				spellCastUI.RecordSpell();
 				spellCastUI.ClearPositions();
-			}
-			else if (currHeld != isHeldPrev) CallNClear();
+
+				state = CastingState.NORMAL;
+				
+				break;
+			case CastingState.CLEARING:
+				if (spellBoard.activeSelf) spellBoard.SetActive(false);
+				CallNClear();
+
+				// return to normal state
+
+				if (state == CastingState.CLEARING) state = CastingState.NORMAL;
+				break;
+			case CastingState.NORMAL:
+				// sets the spell board to be deativated
+				if (spellBoard.activeSelf) spellBoard.SetActive(false);
+
+				// changes state depending on recording spell or not
+				if (currHeld && isRecordingSpell) state = CastingState.RECORDING;
+				else if (currHeld) state = CastingState.CASTING;
+				break;
+			default:
+				break;
 		}
 
-		isHeldPrev = currHeld;
+		// ----- OLD SETUP ----- \\
+		{
+			//if (currHeld != isHeldPrev)
+			//{
+			//	isSpellBoardActive = !isSpellBoardActive;
+			//}
+
+			//if (isSpellActive) // the spell is being called
+			//{
+			//	switch (castResult.Match.Name)
+			//	{
+			//		case "IceSP":
+			//			castWallSpell();
+			//			break;
+			//		case "FireSP":
+			//			castFireSpell();
+			//			break;
+			//	}
+			//	Debug.Log("Casting " +  castResult.Match.Name + " | Match Results: " + castResult.Score);
+			//}
+			//else if (isSpellBoardActive) // the board is being called
+			//{
+			//	if (!isFirstCast) isFirstCast = true;
+			//	setSpellBoard();
+			//	SpellBoard();
+			//}
+			//else
+			//{
+			//	if (spellBoard.activeSelf) spellBoard.SetActive(false);
+
+			//	if (canRecordSpell && currHeld != isHeldPrev)
+			//	{
+			//		Debug.Log("Recorded");
+			//		spellCastUI.RecordSpell();
+			//		spellCastUI.ClearPositions();
+			//	}
+			//	else if (currHeld != isHeldPrev) CallNClear();
+			//}
+
+			//isHeldPrev = currHeld;
+		}
 
 		if (handPrimaryButton.action.inProgress)
 		{
-			canRecordSpell = true;
+			isRecordingSpell = true;
 		}
-		else canRecordSpell = false;
-			
+		else isRecordingSpell = false;
 
+		//print(state);
 	}
 
 	// -- Helper -- \\
@@ -112,7 +199,6 @@ public class activateSpellcating : MonoBehaviour
 		{
 			spellBoard.transform.parent.gameObject.transform.rotation = handPointer3.transform.rotation;
 			spellBoard.transform.parent.gameObject.transform.position = handPointer3.transform.position;
-
 		}
 		spellBoard.SetActive(true);
 	}
@@ -145,7 +231,10 @@ public class activateSpellcating : MonoBehaviour
 			spellCastUI.trackPosition = false;
 			spellCastUI.ClearPositions();
 
-			if (castResult.Score > .6) isSpellActive = true;
+			if (castResult.Score > .6)
+			{
+				state = CastingState.SPELL;
+			}
 		}
 	}
 
@@ -160,12 +249,18 @@ public class activateSpellcating : MonoBehaviour
 
 	public void ResetFirstSpell()
 	{
-		isSpellActive = false;
+		state = CastingState.NORMAL;
+		//isSpellActive = false;
+
+		if (fireballspell != null) fireballspell = null;
 	}
 
 	// -- Spell -- \\
 
-	private void castWallSpell() // renanme this function to a more proper name
+	/// <summary>
+	/// Checks to see if the position in front of the casting hand is a viable place to put a wall
+	/// </summary>
+	private void wallCastChecker() // renanme this function to a more proper name
 	{
 		Vector3 dir = handPointer.transform.localPosition - handPointer2.transform.localPosition;
 
@@ -174,16 +269,17 @@ public class activateSpellcating : MonoBehaviour
 		RaycastHit hit;
 
 	    ray.direction = handPointer.transform.rotation * ray.direction;
+
 		if (Physics.Raycast(ray, out hit, rayLength, wallLayer))
 		{
-
 			hitObj.transform.position = hit.point;
 			Debug.DrawLine(ray.origin, hit.point, Color.red);
 
 			if (isFirstCast && spellCastGrip.action.inProgress)
-            {
-                castWall(hit);
-            }
+			{
+				castWall(hit);
+			}
+
 		}
         else
         {
@@ -213,7 +309,10 @@ public class activateSpellcating : MonoBehaviour
 		if (fireballspell == null)
 		{
 			fireballspell = Instantiate(FireBall);
-			fireballspell.GetComponent<Fireball>().holdPos = SpellStartPoint;
+			Fireball fb = fireballspell.GetComponent<Fireball>();
+			fb.holdPos = SpellStartPoint;
+			fb.spellCastGrip = spellCastGrip;
+			fb.asc = this;
 		}
 	}
 

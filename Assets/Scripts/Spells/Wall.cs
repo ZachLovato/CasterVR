@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class Wall : MonoBehaviour
 {
-    private bool isGripLetGo = false;
-
 	[HideInInspector] public GameObject pointerPosition;
 	[HideInInspector] public InputActionProperty handGrip;
 
