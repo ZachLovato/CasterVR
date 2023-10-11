@@ -19,20 +19,24 @@ public class SpellCastUI : MonoBehaviour
 
     [SerializeField] bool canAddSpell;
 
-    DollarRecognizer dr;
+    private DollarRecognizer dr;
 
 	[SerializeField] SpellCords sc;
 	[SerializeField] string spellName;
 
-    [SerializeField] public SpellCords[] scIniz;
+    //[SerializeField] public SpellCords[] scIniz;
+
+    [SerializeField] DollerHolder dh;
 
 	// Start is called before the first frame update
 	void Start()
     {
-        dr = new DollarRecognizer();
+        //dr = new DollarRecognizer();
 
-        InitializeSpellCords();
+        //InitializeSpellCords();
 
+
+        dr = dh.GetRecognizer();
 	}
 
     // Update is called once per frame
@@ -77,7 +81,7 @@ public class SpellCastUI : MonoBehaviour
 
 		Unistroke us = dr.SavePattern(spellName, positions);
 
-        modifySO(us.Name, positions);
+        modifyScObj(us.Name, positions);
 
         Debug.Log(us.Name);
         
@@ -94,7 +98,7 @@ public class SpellCastUI : MonoBehaviour
         lastPos = Vector2.zero;
     }
 
-    private void modifySO(string name, List<Vector2> pos)
+    private void modifyScObj(string name, List<Vector2> pos)
     {
         sc.SpellName = name;
 
@@ -107,11 +111,17 @@ public class SpellCastUI : MonoBehaviour
         }
     }
 
-    private void InitializeSpellCords()
+    //private void InitializeSpellCords()
+    //{
+    //    for (int i = 0; i < scIniz.Count(); i++)
+    //    {
+    //        dr.SavePattern(scIniz[i].SpellName, scIniz[i].cords);
+    //    }
+    //}
+
+
+    public DollarRecognizer getDollarReconizer()
     {
-        for (int i = 0; i < scIniz.Count(); i++)
-        {
-            dr.SavePattern(scIniz[i].SpellName, scIniz[i].cords);
-        }
+        return dr;
     }
 }

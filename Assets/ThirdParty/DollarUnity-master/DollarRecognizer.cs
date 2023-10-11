@@ -431,4 +431,16 @@ public class DollarRecognizer
 
 		return result;
 	}
+
+	public Unistroke getStroke(int index)
+	{
+		return _library[index];
+	}
+
+	public int Count()
+	{
+		return _library.Count;
+	}
+
+
 }

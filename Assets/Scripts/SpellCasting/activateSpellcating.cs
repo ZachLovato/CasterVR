@@ -88,6 +88,7 @@ public class activateSpellcating : MonoBehaviour
 				if (handSecondaryButton.action.inProgress)
 				{
 					state = CastingState.NORMAL;
+					Destroy( fireballspell );
 					fireballspell = null;
 
 				}
@@ -132,9 +133,18 @@ public class activateSpellcating : MonoBehaviour
 				// sets the spell board to be deativated
 				if (spellBoard.activeSelf) spellBoard.SetActive(false);
 
-				// changes state depending on recording spell or not
-				if (currHeld && isRecordingSpell) state = CastingState.RECORDING;
-				else if (currHeld) state = CastingState.CASTING;
+				Vector3 dir = handPointer.transform.position - handPointer2.transform.position;
+				dir = dir.normalized;
+
+				Ray ray = new Ray(transform.position, dir);
+
+				RaycastHit hit;
+				if (!Physics.Raycast(ray, out hit, 5, 5))
+				{
+					if (currHeld && isRecordingSpell) state = CastingState.RECORDING;
+					else if (currHeld) state = CastingState.CASTING;
+				}
+
 				break;
 			default:
 				break;

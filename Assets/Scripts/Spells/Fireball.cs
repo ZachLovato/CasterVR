@@ -51,10 +51,6 @@ public class Fireball : MonoBehaviour
 	private Vector3 prevPos;
 	bool doOnce = true;
 
-	// TODO: have the object change states where it stays near the hand and where it flyies basied on velocity
-
-
-
 	// Start is called before the first frame update
 	void Start()
     {
