@@ -9,6 +9,7 @@ public class CustomSpell : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI spellName;
     [SerializeField] SpellCastUI spellCastUI;
+    [SerializeField] activateSpellcating spellCaster;
 
     private DollarRecognizer dr;
 
@@ -58,6 +59,11 @@ public class CustomSpell : MonoBehaviour
         {
 			spellIndex = dr.Count() - 1;
         }
+    }
+
+    public void TurnOnRecording()
+    {
+        spellCaster.RecordCasting();
     }
 
 }

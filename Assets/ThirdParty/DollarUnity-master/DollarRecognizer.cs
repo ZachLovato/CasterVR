@@ -442,5 +442,10 @@ public class DollarRecognizer
 		return _library.Count;
 	}
 
+	public void Clear()
+	{
+		_library.Clear();
+		_libraryIndex.Clear();
+	}
 
 }

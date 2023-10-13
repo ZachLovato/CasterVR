@@ -109,11 +109,14 @@ public class activateSpellcating : MonoBehaviour
 				setSpellBoard();
 				SpellBoard();
 
-				if (!currHeld) state = CastingState.RECORDED;
+				//if (!currHeld) state = CastingState.RECORDED;
+				if (handPrimaryButton.action.inProgress) state = CastingState.RECORDED;
 
 				break;
 			case CastingState.RECORDED:
 				Debug.Log("Recorded");
+				
+				isRecordingSpell = false;
 
 				spellCastUI.RecordSpell();
 				spellCastUI.ClearPositions();
@@ -192,11 +195,11 @@ public class activateSpellcating : MonoBehaviour
 			//isHeldPrev = currHeld;
 		}
 
-		if (handPrimaryButton.action.inProgress)
-		{
-			isRecordingSpell = true;
-		}
-		else isRecordingSpell = false;
+		//if (handPrimaryButton.action.inProgress)
+		//{
+		//	isRecordingSpell = true;
+		//}
+		//else isRecordingSpell = false;
 
 		//print(state);
 	}
@@ -263,6 +266,11 @@ public class activateSpellcating : MonoBehaviour
 		//isSpellActive = false;
 
 		if (fireballspell != null) fireballspell = null;
+	}
+
+	public void RecordCasting()
+	{
+		isRecordingSpell = true;
 	}
 
 	// -- Spell -- \\

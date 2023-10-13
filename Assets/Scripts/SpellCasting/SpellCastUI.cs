@@ -31,11 +31,6 @@ public class SpellCastUI : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        //dr = new DollarRecognizer();
-
-        //InitializeSpellCords();
-
-
         dr = dh.GetRecognizer();
 	}
 
@@ -70,9 +65,9 @@ public class SpellCastUI : MonoBehaviour
     {
         Result r = dr.Recognize(positions);
 
-        print(r.Match.Name)
-            
-        ; return r;
+        print(r.Match.Name); 
+        
+        return r;
 	}
 
     public void RecordSpell()
@@ -82,8 +77,6 @@ public class SpellCastUI : MonoBehaviour
 		Unistroke us = dr.SavePattern(spellName, positions);
 
         modifyScObj(us.Name, positions);
-
-        Debug.Log(us.Name);
         
     }
 
@@ -98,6 +91,11 @@ public class SpellCastUI : MonoBehaviour
         lastPos = Vector2.zero;
     }
 
+    /// <summary>
+    /// Modifies the scriptable object so it replaces the name and gives it a new set of cords
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="pos"></param>
     private void modifyScObj(string name, List<Vector2> pos)
     {
         sc.SpellName = name;
@@ -110,15 +108,6 @@ public class SpellCastUI : MonoBehaviour
             print(pos[i]);
         }
     }
-
-    //private void InitializeSpellCords()
-    //{
-    //    for (int i = 0; i < scIniz.Count(); i++)
-    //    {
-    //        dr.SavePattern(scIniz[i].SpellName, scIniz[i].cords);
-    //    }
-    //}
-
 
     public DollarRecognizer getDollarReconizer()
     {
