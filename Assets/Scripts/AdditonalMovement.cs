@@ -34,7 +34,6 @@ public class AdditonalMovement : MonoBehaviour
 	[Header("Crouch")]
 	[SerializeField] private GameObject offset;
 	[SerializeField, Range(0, 1)] private float crouchHeight;
-	private bool isCrouching = false;
 
 	[Space]
     [SerializeField] private ActionBasedContinuousMoveProvider ConMoverAB;

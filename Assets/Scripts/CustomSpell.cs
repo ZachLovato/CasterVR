@@ -8,21 +8,23 @@ using static DollarRecognizer;
 public class CustomSpell : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI spellName;
-    [SerializeField] SpellCastUI spellCastUI;
+    [SerializeField] DollerHolder dh;
     [SerializeField] activateSpellcating spellCaster;
 
     private DollarRecognizer dr;
 
     private int spellIndex = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        dr = spellCastUI.getDollarReconizer();
-    }
+    [Space, Header("Debugging")]
+    [SerializeField] private bool isDebugging = false;
 
-    // Update is called once per frame
-    void Update()
+	private void Awake()
+	{
+		dr = dh.GetRecognizer();
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         //print(spellIndex);
         if (dr != null)
@@ -32,12 +34,12 @@ public class CustomSpell : MonoBehaviour
 			if (stroke != null)
 			{
 				spellName.text = stroke.Name;
-                print(spellIndex);
+                if (isDebugging) print(stroke.Name);
 			}
 		}
         else
         {
-			dr = spellCastUI.getDollarReconizer();
+			dr = dh.GetRecognizer();
 		}
 
         
@@ -64,6 +66,11 @@ public class CustomSpell : MonoBehaviour
     public void TurnOnRecording()
     {
         spellCaster.RecordCasting();
+    }
+
+    public string getCurrentName()
+    {
+        return spellName.text;
     }
 
 }

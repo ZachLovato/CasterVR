@@ -14,29 +14,14 @@ public class SpellCastUI : MonoBehaviour
 	[SerializeField] public GameObject tracer;
 
 	[SerializeField] public List<Vector2> positions;
-
     private Vector2 lastPos = Vector2.zero;
 
-    [SerializeField] bool canAddSpell;
-
-    private DollarRecognizer dr;
-
-	[SerializeField] SpellCords sc;
-	[SerializeField] string spellName;
-
-    //[SerializeField] public SpellCords[] scIniz;
-
     [SerializeField] DollerHolder dh;
-
-	// Start is called before the first frame update
-	void Start()
-    {
-        dr = dh.GetRecognizer();
-	}
 
     // Update is called once per frame
     void Update()
     {
+
         if (trackPosition)
         {
 			if (frame % frameDelay == 0)
@@ -63,22 +48,8 @@ public class SpellCastUI : MonoBehaviour
 
     public DollarRecognizer.Result callDoller()
     {
-        Result r = dr.Recognize(positions);
-
-        print(r.Match.Name); 
-        
-        return r;
+        return dh.callDoller(positions);
 	}
-
-    public void RecordSpell()
-    {
-        if (positions.Count <= 0) return;
-
-		Unistroke us = dr.SavePattern(spellName, positions);
-
-        modifyScObj(us.Name, positions);
-        
-    }
 
     public void ChangeTracerPos(Vector3 pos)
     {
@@ -91,26 +62,10 @@ public class SpellCastUI : MonoBehaviour
         lastPos = Vector2.zero;
     }
 
-    /// <summary>
-    /// Modifies the scriptable object so it replaces the name and gives it a new set of cords
-    /// </summary>
-    /// <param name="name"></param>
-    /// <param name="pos"></param>
-    private void modifyScObj(string name, List<Vector2> pos)
+    public void RecordSpell(string name)
     {
-        sc.SpellName = name;
+        dh.SavePattern(name, positions);
 
-        sc.cords.Clear();
+	}
 
-        for (int i = 0; i < pos.Count; i++)
-        {
-            sc.cords.Add(pos[i]);
-            print(pos[i]);
-        }
-    }
-
-    public DollarRecognizer getDollarReconizer()
-    {
-        return dr;
-    }
 }

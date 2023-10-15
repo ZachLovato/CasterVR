@@ -31,7 +31,7 @@ public class Fireball : MonoBehaviour
 	[Header("AoE Information")]
 	[SerializeField] GameObject AoEOBJ;
 	[SerializeField] float radius = 0;
-	[SerializeField] private float AoEDamage = 5;
+	//[SerializeField] private float AoEDamage = 5;
 	[SerializeField] float DoTFrameDelay = 30;
 	[SerializeField] float DoTDurationSeconds = 10;
 
@@ -40,12 +40,10 @@ public class Fireball : MonoBehaviour
 
 	[Header("Destruction Timer")]
 	[SerializeField] float destroyDelay = 0;
-	[SerializeField] bool isFlying = false;
 	DestoryTimer dt;
 
 	public InputActionProperty spellCastGrip;
 
-	[SerializeField] private float forceScale = 1;
 	public activateSpellcating asc;
 
 	private Vector3 prevPos;

@@ -448,4 +448,29 @@ public class DollarRecognizer
 		_libraryIndex.Clear();
 	}
 
+	public void removeItem(string SpellName)
+	{
+		int position = -1;
+		for (int i = 0; i < _library.Count; i++)
+		{
+			if (_library[i].Name == SpellName)
+			{
+				position = i;
+				break;
+			}
+		}
+
+		if (position != -1)
+		{
+			_library.RemoveAt(position);
+			_libraryIndex.Remove(SpellName);
+		}
+
+	}
+
+	public List<Unistroke> getUnistrokeList()
+	{
+		return _library;
+	}
+
 }
