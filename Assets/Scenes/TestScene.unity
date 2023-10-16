@@ -5723,6 +5723,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 2c3be3ad5b65ba948ad5b20579737a45, type: 2}
     - target: {fileID: 2634797703724522248, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
+      propertyPath: IceWallPrefab
+      value: 
+      objectReference: {fileID: 7255267050393222186, guid: 74cfc9852df07f24ca3abccb44b3869e, type: 3}
+    - target: {fileID: 2634797703724522248, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
+      propertyPath: FireBallPrefab
+      value: 
+      objectReference: {fileID: 7567492715124960361, guid: acea813aafca97e4bab48e6cbae03347, type: 3}
+    - target: {fileID: 2634797703724522248, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
+      propertyPath: LightingPrefab
+      value: 
+      objectReference: {fileID: 3371363339447610636, guid: 7e6ab59415d41934bb3c53de3f2fa9f7, type: 3}
+    - target: {fileID: 2634797703724522248, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
       propertyPath: SpellStartPoint
       value: 
       objectReference: {fileID: 1166853742}
@@ -6891,6 +6903,7 @@ MonoBehaviour:
   scIniz:
   - {fileID: 11400000, guid: a225e10af6e60654bb8d0c696b707427, type: 2}
   - {fileID: 11400000, guid: 15906a8e6f2a31a4aadb36fef2fa051f, type: 2}
+  - {fileID: 11400000, guid: 9d97c54327917c141acfa46cbc2fc9c1, type: 2}
   isDebuging: 0
 --- !u!1001 &6131831861413296368
 PrefabInstance:

@@ -1,17 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Lighting : MonoBehaviour
 {
+	#region Lighting Casting Variables
 	[HideInInspector] public InputActionProperty handGrip;
-	[HideInInspector] public InputActionProperty handPosition;
-
+	[HideInInspector] public GameObject handPosition;
 
     private GameObject positionCreated;
 
     bool didEndScript = false;
+
+    [SerializeField] private GameObject lightingSphere;
+    [SerializeField] private GameObject lightingWave;
+
+    private bool isFirstCast = true;
+
+    [HideInInspector] public activateSpellcating asc;
+    [HideInInspector] public GameObject loc;
+
+    private GameObject dometracker;
+    #endregion
 
 	// Start is called before the first frame update
 	void Start()
@@ -22,12 +34,23 @@ public class Lighting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool isGripHeld = handGrip.action.ReadValue<bool>();
+        bool isGripHeld = handGrip.action.inProgress;
 
-
+        transform.position = loc.transform.position;
 
         if (isGripHeld)
         {
+            if (dometracker == null)
+            {
+                dometracker = new GameObject();
+                dometracker.transform.position = transform.position;
+            }
+            else
+            {
+                Vector3 tempLoc = transform.position;
+                tempLoc.y = dometracker.transform.position.y;
+                dometracker.transform.position = tempLoc;
+            }
             didEndScript = true;
         }
         else if (didEndScript)
@@ -36,33 +59,59 @@ public class Lighting : MonoBehaviour
             {
 				case 0:
                     print("spell Higher casting");
+                    // create a object that will do damage ina circle
+                    castDome();
 					break;
 				case 1:
 					print("spell Lower casting");
+                    // ground attack or shock "Wave"
+                    castWave();
 					break;
 				case -1:
                     Debug.Log("Error Calculating Distance");
 					break;
 			}
+
+            Destroy(gameObject);
         }
 
     }
 
-    public int calculateDistance()
+    private void castDome()
     {
-        // if the number is -# then its means the hand is above the casted position
-        float distance = positionCreated.transform.position.y - handPosition.action.ReadValue<Vector3>().y;
+        if (isFirstCast)
+        {
+            GameObject go = Instantiate(lightingSphere, transform);
 
-        if (distance < 0) return 0;
-        else if (distance > 0) return 1;
-        else return -1; // error code
+            go.transform.SetParent(Camera.main.transform);
+            go.transform.localPosition = Vector3.zero;
+
+            asc.ResetFirstSpell();
+        }
     }
 
-
-    public void cretePositionTracker(GameObject parent)
+    private void castWave()
     {
-		positionCreated = new GameObject();
-        positionCreated.transform.SetParent(parent.transform);
+		if (isFirstCast)
+		{
+			GameObject go = Instantiate(lightingWave);
+            go.transform.position = transform.position;
+			asc.ResetFirstSpell();
+		}
 	}
+
+    public int calculateDistance()
+    {
+        float created = dometracker.transform.position.y;
+        float casted = handPosition.transform.position.y;
+
+        // if the number is -# then its means the hand is above the casted position
+
+        Destroy(dometracker);
+
+        if (casted <= created) return 1;
+        else if (casted > created) return 0;
+        else return -1; // error code
+    }
 
 }

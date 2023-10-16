@@ -7,6 +7,7 @@ public class DestoryTimer : MonoBehaviour
     [SerializeField] public float DestoryDelay = 0;
     private float delay = 0;
     [SerializeField] public bool useTimer = true;
+    [SerializeField] public bool DestoryParent = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,19 @@ public class DestoryTimer : MonoBehaviour
     {
         if (useTimer) delay -= Time.deltaTime;
 
-        if (delay < 0) Destroy(this.gameObject);
+        if (delay < 0)
+        {
+            if (DestoryParent)
+            {
+				Destroy(gameObject.transform.parent);
+			}
+            else
+            {
+				Destroy(gameObject);
+			}
+            
+        }
+
 
     }
 }

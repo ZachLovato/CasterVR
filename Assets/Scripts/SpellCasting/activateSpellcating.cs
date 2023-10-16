@@ -39,14 +39,15 @@ public class activateSpellcating : MonoBehaviour
 	private SpellCastUI spellCastUI;
 
     [Header("Spell Prefabs")]
-    [SerializeField] GameObject IceWall;
+    [SerializeField] GameObject IceWallPrefab;
     [SerializeField] LayerMask wallLayer;
-    [SerializeField] GameObject FireBall;
+    [SerializeField] GameObject FireBallPrefab;
+    [SerializeField] GameObject LightingPrefab;
 
 	//[SerializeField] float lowestSpellScore = 0.6f;
 	private DollarRecognizer.Result castResult;
 
-	private GameObject fireballspell = null;
+	private GameObject spellObject = null;
 
 	private bool prevHeld;
 
@@ -66,7 +67,6 @@ public class activateSpellcating : MonoBehaviour
     {
 
 		bool currHeld = interactions.spellCastTrigger.action.inProgress;
-		Vector3 pos = interactions.handPosition.action.ReadValue<Vector3>();
 
 
 		switch (state)
@@ -83,6 +83,7 @@ public class activateSpellcating : MonoBehaviour
 					case "WindSP":
 						break;
 					case "LightingSP":
+						castLightingSpell();
 						break;
 					default: 
 						break;
@@ -91,8 +92,8 @@ public class activateSpellcating : MonoBehaviour
 				if (interactions.handSecondaryButton.action.inProgress)
 				{
 					state = CastingState.NORMAL;
-					Destroy( fireballspell );
-					fireballspell = null;
+					Destroy( spellObject );
+					spellObject = null;
 
 				}
 
@@ -165,7 +166,7 @@ public class activateSpellcating : MonoBehaviour
 		prevHeld = currHeld;
 	}
 
-	// -- Helper -- \\
+	#region  Helper
 
 	private void setSpellBoard()
 	{
@@ -226,7 +227,7 @@ public class activateSpellcating : MonoBehaviour
 		state = CastingState.NORMAL;
 		//isSpellActive = false;
 
-		if (fireballspell != null) fireballspell = null;
+		if (spellObject != null) spellObject = null;
 	}
 
 	public void RecordCasting()
@@ -235,8 +236,9 @@ public class activateSpellcating : MonoBehaviour
 		state = CastingState.RECORDING;
 	}
 
-	// -- Spell -- \\
+	#endregion
 
+	#region  SpellCasting
 	/// <summary>
 	/// Checks to see if the position in front of the casting hand is a viable place to put a wall
 	/// </summary>
@@ -268,9 +270,9 @@ public class activateSpellcating : MonoBehaviour
 		
 	}
 
-    private void castWall(RaycastHit hit)
+	private void castWall(RaycastHit hit)
     {
-        GameObject wall = Instantiate(IceWall);
+        GameObject wall = Instantiate(IceWallPrefab);
         Wall wallCom = wall.GetComponent<Wall>();
 		wallCom.startPoint = hit.point;
 		wallCom.handGrip = interactions.spellCastGrip;
@@ -286,14 +288,29 @@ public class activateSpellcating : MonoBehaviour
 
 	private void castFireSpell()
 	{
-		if (fireballspell == null)
+		if (spellObject == null)
 		{
-			fireballspell = Instantiate(FireBall);
-			Fireball fb = fireballspell.GetComponent<Fireball>();
+			spellObject = Instantiate(FireBallPrefab);
+			Fireball fb = spellObject.GetComponent<Fireball>();
 			fb.holdPos = SpellStartPoint;
 			fb.spellCastGrip = interactions.spellCastGrip;
 			fb.asc = this;
 		}
 	}
 
+	private void castLightingSpell()
+	{
+		if (spellObject == null)
+		{
+			spellObject = Instantiate(LightingPrefab);
+			Lighting light = spellObject.GetComponent<Lighting>();
+			light.asc = this;
+			light.loc = SpellStartPoint;
+			light.handGrip = interactions.spellCastGrip;
+			light.handPosition = gameObject;
+		}
+	}
+
+
+	#endregion
 }
