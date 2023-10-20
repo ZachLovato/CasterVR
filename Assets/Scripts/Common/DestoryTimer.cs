@@ -24,7 +24,7 @@ public class DestoryTimer : MonoBehaviour
         {
             if (DestoryParent)
             {
-				Destroy(gameObject.transform.parent);
+				Destroy(gameObject.transform.parent.gameObject);
 			}
             else
             {

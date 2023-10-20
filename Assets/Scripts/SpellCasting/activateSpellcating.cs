@@ -39,12 +39,9 @@ public class activateSpellcating : MonoBehaviour
 	private SpellCastUI spellCastUI;
 
     [Header("Spell Prefabs")]
-    [SerializeField] GameObject IceWallPrefab;
+	[SerializeField] SpellPrefab spellPrefab;
     [SerializeField] LayerMask wallLayer;
-    [SerializeField] GameObject FireBallPrefab;
-    [SerializeField] GameObject LightingPrefab;
 
-	//[SerializeField] float lowestSpellScore = 0.6f;
 	private DollarRecognizer.Result castResult;
 
 	private GameObject spellObject = null;
@@ -81,9 +78,12 @@ public class activateSpellcating : MonoBehaviour
 						castFireSpell();
 						break;
 					case "WindSP":
+						castWindSpell();
 						break;
 					case "LightingSP":
 						castLightingSpell();
+						break;
+					case "SpritSP":
 						break;
 					default: 
 						break;
@@ -272,7 +272,7 @@ public class activateSpellcating : MonoBehaviour
 
 	private void castWall(RaycastHit hit)
     {
-        GameObject wall = Instantiate(IceWallPrefab);
+        GameObject wall = Instantiate(spellPrefab.IcePrefab);
         Wall wallCom = wall.GetComponent<Wall>();
 		wallCom.startPoint = hit.point;
 		wallCom.handGrip = interactions.spellCastGrip;
@@ -290,7 +290,7 @@ public class activateSpellcating : MonoBehaviour
 	{
 		if (spellObject == null)
 		{
-			spellObject = Instantiate(FireBallPrefab);
+			spellObject = Instantiate(spellPrefab.FirePrefab);
 			Fireball fb = spellObject.GetComponent<Fireball>();
 			fb.holdPos = SpellStartPoint;
 			fb.spellCastGrip = interactions.spellCastGrip;
@@ -302,12 +302,24 @@ public class activateSpellcating : MonoBehaviour
 	{
 		if (spellObject == null)
 		{
-			spellObject = Instantiate(LightingPrefab);
+			spellObject = Instantiate(spellPrefab.LightingPrefab);
 			Lighting light = spellObject.GetComponent<Lighting>();
 			light.asc = this;
 			light.loc = SpellStartPoint;
 			light.handGrip = interactions.spellCastGrip;
 			light.handPosition = gameObject;
+		}
+	}
+
+	private void castWindSpell()
+	{
+		if (spellObject == null)
+		{
+			spellObject = Instantiate(spellPrefab.WindPrefab);
+			Wind wind = spellObject.GetComponent<Wind>();
+			wind.handGrip = interactions.spellCastGrip;
+			wind.handObject = gameObject;
+			wind.asc = this;
 		}
 	}
 

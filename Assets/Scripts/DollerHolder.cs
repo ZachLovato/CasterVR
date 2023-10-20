@@ -21,13 +21,13 @@ public class DollerHolder : MonoBehaviour
 
 		if (_recognizer != null)
 		{
-			if (isDebuging) print("DollarRecognizer created");
+			debugPrint("DollarRecognizer created");
 
 			InitializeSpellCords();
 		}
 		else
 		{
-			if (isDebuging) print("DollarRecognizer Failed to CREATE");
+			debugPrint("DollarRecognizer Failed to CREATE");
 		}
 	}
 
@@ -46,7 +46,12 @@ public class DollerHolder : MonoBehaviour
 			temp += scIniz[i].SpellName + ", ";
 		}
 
-		if (isDebuging) print(temp);
+		debugPrint(temp);
+	}
+
+	private void debugPrint(string message)
+	{
+		if (isDebuging) Debug.Log(message);
 	}
 
 
@@ -56,7 +61,7 @@ public class DollerHolder : MonoBehaviour
 	{
 		Result r = _recognizer.Recognize(positions);
 
-		print("1$ has found a Match: " + r.Match.Name + "\nScore: " + r.Score);
+		debugPrint("1$ has found a Match: " + r.Match.Name + "\nScore: " + r.Score);
 
 		return r;
 	}
@@ -78,7 +83,7 @@ public class DollerHolder : MonoBehaviour
 			allItems += stroke.Name + ", ";
 		}
 
-		Debug.Log(allItems);
+		debugPrint(allItems);
 
 		ModifySpellHolder(us.Name, positions);
 	}
@@ -101,8 +106,8 @@ public class DollerHolder : MonoBehaviour
 			}
 		}
 
-		if (didFindSpellName) Debug.Log("Found " + name + " in list");
-		else Debug.Log("Could not find " + name + " in spell list");
+		if (didFindSpellName) debugPrint("Found " + name + " in list");
+		else debugPrint("Could not find " + name + " in spell list");
     }
 
 	#endregion

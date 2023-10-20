@@ -8,6 +8,7 @@ public class Health : MonoBehaviour
     [SerializeField] private float HP;
 
     [SerializeField] private bool isDead = false;
+    [SerializeField] private bool isNonPlayer = false;
 
     [SerializeField, Range(0,20)] private float DestroyDelay = 0;
     private float destroyTimer = 0;
@@ -16,14 +17,20 @@ public class Health : MonoBehaviour
     void Start()
     {
 		destroyTimer = DestroyDelay;
+        HP = MaxHP;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(isNonPlayer)
+        {
+            if (HP <= 0) isDead = true;
+        }
+
         if (isDead)
         {
-            if (destroyTimer < 0)
+            if (destroyTimer <= 0)
             {
                 gameObject.AddComponent<DestoryTimer>().DestoryDelay = destroyTimer;
             }

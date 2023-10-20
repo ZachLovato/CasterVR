@@ -10,8 +10,6 @@ public class Lighting : MonoBehaviour
 	[HideInInspector] public InputActionProperty handGrip;
 	[HideInInspector] public GameObject handPosition;
 
-    private GameObject positionCreated;
-
     bool didEndScript = false;
 
     [SerializeField] private GameObject lightingSphere;
@@ -95,7 +93,9 @@ public class Lighting : MonoBehaviour
 		if (isFirstCast)
 		{
 			GameObject go = Instantiate(lightingWave);
-            go.transform.position = transform.position;
+            Vector3 spawnLoc = transform.position;
+            spawnLoc.y = - 100;
+            go.transform.position = spawnLoc;
 			asc.ResetFirstSpell();
 		}
 	}

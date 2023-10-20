@@ -1,0 +1,215 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class EnemyController : MonoBehaviour
+{
+    private float timer = 0;
+    enum STATE
+    {
+        IDLE,
+        PATROL,
+        WANDER,
+        CHASE,
+        ATTACK,
+        DODGE,
+        RETREAT
+    }
+
+    [SerializeField] private STATE state;
+    [SerializeField] private NavMeshAgent agent;
+
+	#region State Variables
+	[Header("IDLE state")]
+    [SerializeField] private float idleDuration;
+    [SerializeField] private STATE IdleToState;
+
+	[Header("Patrol state")]
+	[SerializeField] private GameObject[] patrolLocations;
+    [SerializeField] private float minDistance = 1;
+	[SerializeField] private STATE PatrolToState;
+	[SerializeField] private bool chooseRandomPatrol = false;
+    private int patrolNum = 0;
+
+    [Header("Wander State")]
+    [SerializeField, Range(3,20)] private float wanderRadius = 5;
+	[SerializeField] private STATE WanderToState;
+	private Vector3 wanderSpot = Vector3.zero;
+
+    [Header("Chase State")]
+	[SerializeField] private float minChaseDistance = 6;
+    
+
+	[Space, SerializeField] private STATE FoundPlayerState;
+    #endregion
+
+    private GameObject playerObject;
+
+	[Space, SerializeField] bool isDegugging = false;
+	[SerializeField] bool isDrawingGizmo = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        state = STATE.IDLE;
+        agent = GetComponent<NavMeshAgent>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //agent.destination = patrolLocations[patrolNum].transform.position;
+
+        switch (state)
+        {
+            case STATE.IDLE: IdleState(); break;
+            case STATE.PATROL: PatrolState(); break;
+            case STATE.WANDER: WanderState(); break;
+            case STATE.CHASE: ChaseState(); break;
+			case STATE.ATTACK:
+				break;
+			case STATE.RETREAT: 
+                break;
+            case STATE.DODGE:
+                break;
+
+        }
+
+        printDebug("Current State:" + state);
+    }
+
+	#region Helper Functions
+
+    public void FoundPlayer(GameObject player)
+    {
+        playerObject = player;
+        state = FoundPlayerState;
+    }
+	private bool checkTimer(float duration)
+    {
+        if (timer >= duration)
+        {
+            timer = 0;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private float getDistanceFromPatorl()
+    {
+        return Vector3.Distance(transform.position, patrolLocations[patrolNum].transform.position);
+
+    }
+    private int getRandomPatrol()
+    {
+        int patrolCount = patrolLocations.Length;
+        return Random.Range(0, patrolCount);
+    }
+	#endregion
+
+	#region states
+
+	private void IdleState()
+    {
+		//if the timer is greator then 
+		if (checkTimer(idleDuration))
+		{
+			state = IdleToState;
+            timer = 0;
+		}
+        else
+        {
+            timer += Time.deltaTime;
+        }
+	}
+
+    private void PatrolState()
+    {
+		if (patrolLocations.Count() <= 0)
+		{
+			state = STATE.IDLE;
+			printDebug("There are no patrol locations");
+            return;
+		}
+
+        if (getDistanceFromPatorl() < minDistance)
+        {
+            if (chooseRandomPatrol) patrolNum = getRandomPatrol();
+            else
+            {
+                patrolNum = (patrolNum + 1) % patrolLocations.Length;
+            }
+            state = PatrolToState;
+		}
+        else
+        {
+		    agent.destination = patrolLocations[patrolNum].transform.position;
+        }
+	}
+
+    private void WanderState()
+    {
+        if (wanderSpot == Vector3.zero)
+        {
+            wanderSpot = transform.position + (Random.insideUnitSphere * wanderRadius);
+			NavMeshHit hit;
+			NavMesh.SamplePosition(wanderSpot, out hit, wanderRadius, 1);
+			wanderSpot = hit.position;
+		}
+
+        float distance = Vector3.Distance(transform.position, wanderSpot);
+
+
+		if (distance <= minDistance)
+        {
+            state = WanderToState;
+            wanderSpot = Vector3.zero;
+        }
+        else
+        {
+            agent.destination = wanderSpot;
+        }
+    }
+
+    private void ChaseState()
+    {
+        if (Vector3.Distance(transform.position, playerObject.transform.position) <= minChaseDistance)
+        {
+            state = STATE.ATTACK;
+        }
+        else
+        {
+            agent.destination = playerObject.transform.position;
+        }
+
+
+    }
+
+
+
+
+	#endregion
+
+	private void OnDrawGizmos()
+	{
+        if (isDrawingGizmo)
+        {
+			Gizmos.color = Color.blue;
+			Gizmos.DrawWireSphere(transform.position, wanderRadius);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(wanderSpot, 1);
+		}
+        
+	}
+
+	private void printDebug(string msg)
+    {
+        if (isDegugging) { Debug.Log(msg); }
+    }
+}
