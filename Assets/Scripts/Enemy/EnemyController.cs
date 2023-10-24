@@ -41,11 +41,13 @@ public class EnemyController : MonoBehaviour
 
     [Header("Chase State")]
 	[SerializeField] private float minChaseDistance = 6;
-    
+
 
 	[Space, SerializeField] private STATE FoundPlayerState;
-    #endregion
+	#endregion
 
+	[SerializeField] private EnemyVision vision;
+	[SerializeField] private EnemyAttacks attack;
     private GameObject playerObject;
 
 	[Space, SerializeField] bool isDegugging = false;
@@ -55,6 +57,8 @@ public class EnemyController : MonoBehaviour
     {
         state = STATE.IDLE;
         agent = GetComponent<NavMeshAgent>();
+        attack = GetComponent<EnemyAttacks>();
+        attack.enabled = false;
     }
 
     // Update is called once per frame
@@ -68,14 +72,12 @@ public class EnemyController : MonoBehaviour
             case STATE.PATROL: PatrolState(); break;
             case STATE.WANDER: WanderState(); break;
             case STATE.CHASE: ChaseState(); break;
-			case STATE.ATTACK:
-				break;
+			case STATE.ATTACK: AttackState(); break;
 			case STATE.RETREAT: 
-                break;
-            case STATE.DODGE:
                 break;
 
         }
+
 
         printDebug("Current State:" + state);
     }
@@ -87,6 +89,23 @@ public class EnemyController : MonoBehaviour
         playerObject = player;
         state = FoundPlayerState;
     }
+    public bool isPlayerInLOS()
+    {
+        if (vision != null) printDebug("vision is here");
+        else printDebug("Vision is null");
+        bool isSeen = vision.isPlayerSeen();
+        if (isSeen)
+        {
+            playerObject = vision.getPlayer();
+        }
+        return isSeen;
+    }
+
+    public void setNewTargetPosition(Vector3 newPos)
+    {
+        agent.destination = newPos;
+    }
+
 	private bool checkTimer(float duration)
     {
         if (timer >= duration)
@@ -110,6 +129,8 @@ public class EnemyController : MonoBehaviour
         int patrolCount = patrolLocations.Length;
         return Random.Range(0, patrolCount);
     }
+
+    
 	#endregion
 
 	#region states
@@ -126,6 +147,8 @@ public class EnemyController : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
+
+        if (isPlayerInLOS()) state = STATE.CHASE;
 	}
 
     private void PatrolState()
@@ -150,6 +173,8 @@ public class EnemyController : MonoBehaviour
         {
 		    agent.destination = patrolLocations[patrolNum].transform.position;
         }
+
+		if (isPlayerInLOS()) state = STATE.CHASE;
 	}
 
     private void WanderState()
@@ -174,7 +199,9 @@ public class EnemyController : MonoBehaviour
         {
             agent.destination = wanderSpot;
         }
-    }
+
+		if (isPlayerInLOS()) state = STATE.CHASE;
+	}
 
     private void ChaseState()
     {
@@ -190,11 +217,16 @@ public class EnemyController : MonoBehaviour
 
     }
 
-
+    private void AttackState()
+    {
+        attack.enabled = true;
+    }
 
 
 	#endregion
 
+
+	#region Debug
 	private void OnDrawGizmos()
 	{
         if (isDrawingGizmo)
@@ -207,6 +239,7 @@ public class EnemyController : MonoBehaviour
 		}
         
 	}
+	#endregion
 
 	private void printDebug(string msg)
     {

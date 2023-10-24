@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1179399823084724966}
   - component: {fileID: 8955656950152857102}
   - component: {fileID: 1505596239347170918}
+  - component: {fileID: -3153740222742626505}
   m_Layer: 0
   m_Name: fireball
   m_TagString: Untagged
@@ -158,12 +159,10 @@ MonoBehaviour:
     m_Bits: 1024
   AoEOBJ: {fileID: 7272876216569170004, guid: fbf8b91f0aae4774f9ca4dc4a608a8c4, type: 3}
   radius: 10
-  AoEDamage: 5
   DoTFrameDelay: 30
   DoTDurationSeconds: 10
   DDamage: 30
   destroyDelay: 10
-  isFlying: 0
   spellCastGrip:
     m_UseReference: 0
     m_Action:
@@ -176,7 +175,6 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  forceScale: 1
   asc: {fileID: 0}
 --- !u!114 &8955656950152857102
 MonoBehaviour:
@@ -340,3 +338,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestoryDelay: 5
   useTimer: 0
+  DestoryParent: 0
+--- !u!135 &-3153740222742626505
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7567492715124960361}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}

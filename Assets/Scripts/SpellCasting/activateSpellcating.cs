@@ -24,8 +24,9 @@ public class activateSpellcating : MonoBehaviour
     [SerializeField] GameObject handPointer;
     [SerializeField] GameObject handPointer2;
     [SerializeField] GameObject handPointer3;
-	[SerializeField] GameObject hitObj;
     [SerializeField] GameObject SpellStartPoint;
+	[SerializeField] GameObject hitObjPrefab;
+	[HideInInspector] GameObject hitObj;
 
 	[Header("Action Input")] // go to SpellGrips to add more
 	[SerializeField] private SpellGrips interactions;
@@ -41,6 +42,7 @@ public class activateSpellcating : MonoBehaviour
     [Header("Spell Prefabs")]
 	[SerializeField] SpellPrefab spellPrefab;
     [SerializeField] LayerMask wallLayer;
+	[SerializeField] float rayLength = 10;
 
 	private DollarRecognizer.Result castResult;
 
@@ -57,6 +59,7 @@ public class activateSpellcating : MonoBehaviour
 		spellBoard.SetActive(false);
 		castResult = new DollarRecognizer.Result();
 		state = CastingState.NORMAL;
+		hitObj = Instantiate(hitObjPrefab);
     }
 
     // Update is called once per frame
@@ -100,7 +103,11 @@ public class activateSpellcating : MonoBehaviour
 				break;
 			case CastingState.CASTING:
 
-				if (!isFirstCast) isFirstCast = true;
+				if (!isFirstCast)
+				{
+					isFirstCast = true;
+					hitObj.SetActive(true);
+				}
 				
 				setSpellBoard();
 				SpellBoard();
@@ -247,7 +254,6 @@ public class activateSpellcating : MonoBehaviour
 		Vector3 dir = handPointer.transform.localPosition - handPointer2.transform.localPosition;
 
 		Ray ray = new Ray(transform.position, dir);
-		float rayLength = 5f;
 		RaycastHit hit;
 
 	    ray.direction = handPointer.transform.rotation * ray.direction;
@@ -255,10 +261,16 @@ public class activateSpellcating : MonoBehaviour
 		if (Physics.Raycast(ray, out hit, rayLength, wallLayer))
 		{
 			hitObj.transform.position = hit.point;
+			Quaternion temp;
+			temp = Quaternion.LookRotation(Vector3.Cross(hitObj.transform.forward, hit.normal), hit.normal);
+			
+			hitObj.transform.rotation = temp;
+			print(temp);
 			Debug.DrawLine(ray.origin, hit.point, Color.red);
 
 			if (isFirstCast && interactions.spellCastGrip.action.inProgress)
 			{
+				hitObj.SetActive(false);
 				castWall(hit);
 			}
 
@@ -266,6 +278,7 @@ public class activateSpellcating : MonoBehaviour
         else
         {
 			Debug.DrawLine(ray.origin, ray.origin + ray.direction * 40, Color.green);
+			hitObj.SetActive(false);
 		}
 		
 	}
@@ -280,7 +293,8 @@ public class activateSpellcating : MonoBehaviour
 		wallCom.asc = this;
         isFirstCast = false;
 
-		wall.transform.rotation = Quaternion.LookRotation(Vector3.Cross(wall.transform.right, hit.normal), hit.normal);
+		//wall.transform.rotation = Quaternion.LookRotation(Vector3.Cross(wall.transform.right, hit.normal), hit.normal);
+		wall.transform.rotation = Quaternion.FromToRotation(hit.transform.up, hit.normal);// * transform.rotation;
 		wallCom.upRotation = wall.transform.rotation;
 
 		wallCom.normal = hit.normal;

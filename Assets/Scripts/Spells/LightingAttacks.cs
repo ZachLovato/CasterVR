@@ -14,10 +14,12 @@ public class LightingAttacks : MonoBehaviour
 	[SerializeField] private ATTACKSTATE state;
 	private bool isFirstPass = true;
 
+
 	[SerializeField] private Rigidbody rb;
 	[SerializeField] private LayerMask lm;
 
     [SerializeField] private float forceScale;
+	[SerializeField] private bool isDegugging = false;
 
 	private void FixedUpdate()
 	{
@@ -31,16 +33,20 @@ public class LightingAttacks : MonoBehaviour
 				if (isFirstPass)
 				{
 					transform.SetParent(Camera.main.transform);
+					CapsuleCollider cc = GetComponent<CapsuleCollider>();
+					isFirstPass = false;
+					cc.radius = 11;
 				}
 				break;
 		}
+		
 	}
 
     private void shockWave()
     {
         if (isFirstPass)
         {
-			print("created the Wave");
+			printDebug("created the Wave");
 			// spawn the wave on the ground
 			Ray ray = new Ray(Camera.main.transform.position, Vector3.down);
 			Physics.Raycast(ray, out RaycastHit hitInfo, 5, lm);
@@ -56,7 +62,7 @@ public class LightingAttacks : MonoBehaviour
         }
         
         if (rb != null) rb.AddForce(transform.forward * forceScale, ForceMode.Impulse);
-        else print("nope, no rb");
+        else printDebug("nope, no rb");
     }
 
 	private void OnTriggerEnter(Collider other)
@@ -64,25 +70,46 @@ public class LightingAttacks : MonoBehaviour
 		switch (state)
 		{
 			case ATTACKSTATE.Wave:
-				if (other.gameObject.TryGetComponent(out Health health) && other.gameObject.layer == 10)
+				if (other.gameObject.TryGetComponent(out Health health) && other.gameObject.tag == "Hostile")
 				{
-					health.AddHealth(10);
+					health.AddHealth(-10);
 				}
+				else printDebug(other.gameObject.name + " is not a Hostile");
 				break;
 			case ATTACKSTATE.Aura:
-				if (other.gameObject.layer == 10)
+				if (other.gameObject.tag == "Hostile")
 				{
-					other.AddComponent<DoTEffect>();
+					DoTEffect dot = other.AddComponent<DoTEffect>();
+					dot.setStats(10, 5, 2);
 				}
 				break;
 		}
 
-		
+
+	}
+	private void OnCollisionEnter(Collision other)
+	{
+		switch (state)
+		{
+			case ATTACKSTATE.Wave:
+				if (other.gameObject.TryGetComponent(out Health health) && other.gameObject.tag == "Hostile")
+				{
+					health.AddHealth(-10);
+				}
+				else printDebug(other.gameObject.name + " is not a Hostile");
+				break;
+			case ATTACKSTATE.Aura:
+				if (other.gameObject.tag == "Hostile")
+				{
+					other.gameObject.AddComponent<DoTEffect>();
+				}
+				break;
+		}
 	}
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.gameObject.layer == 10)
+		if (other.gameObject.tag == "Hostile")
 		{
 			if (other.gameObject.TryGetComponent(out DoTEffect dot))
             {
@@ -90,4 +117,10 @@ public class LightingAttacks : MonoBehaviour
             }
 		}
 	}
+
+	private void printDebug(string msg)
+	{
+		if (isDegugging) Debug.Log(msg);
+	}
+
 }

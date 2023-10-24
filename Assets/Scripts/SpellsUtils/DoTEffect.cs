@@ -17,6 +17,7 @@ public class DoTEffect : MonoBehaviour
 	private void Start()
 	{
 		health = GetComponent<Health>();
+        Debug.Log("Dot on " + gameObject.name);
 	}
 
 	void Update()
@@ -42,4 +43,12 @@ public class DoTEffect : MonoBehaviour
             tick = 0;
         }
 	}
+
+    public void setStats(float durationSec, float ticksPerDamage, float damage)
+    {
+        duration = durationSec;
+        framePerDamageTick = ticksPerDamage;
+        this.damage = damage;
+    }
+
 }

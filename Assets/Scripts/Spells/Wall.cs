@@ -57,6 +57,10 @@ public class Wall : MonoBehaviour
         {
 			transform.rotation = Quaternion.LookRotation(Vector3.Cross(transform.right, normal), normal);
 		}
+        else
+        {
+			transform.rotation = Quaternion.LookRotation(Vector3.Cross(-transform.right, normal), normal);
+		}
         Vector3 scale = Vector3.one;
         scale.y *= dis * scaleSpeed;
 

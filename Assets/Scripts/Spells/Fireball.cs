@@ -119,7 +119,7 @@ public class Fireball : MonoBehaviour
 			
 			Destroy(this.gameObject);
 		}
-		else if (collision.gameObject.layer == 10)
+		else if (collision.gameObject.tag == "Hostile")
 		{
 			collision.gameObject.GetComponent<Health>().AddHealth(-DDamage);
 			dt.useTimer = false;
