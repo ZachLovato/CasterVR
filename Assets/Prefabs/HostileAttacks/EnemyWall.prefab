@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8777906206760085235}
   - component: {fileID: 6842784233816573730}
   - component: {fileID: 8790460885453458027}
+  - component: {fileID: 7151273286514182084}
+  - component: {fileID: 8411763598746145137}
   m_Layer: 16
   m_Name: EnemyWall
   m_TagString: Untagged
@@ -121,3 +123,44 @@ MonoBehaviour:
   DestoryDelay: 15
   useTimer: 1
   DestoryParent: 0
+--- !u!114 &7151273286514182084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408302914083866305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba150edfd3c02d409c5818e00e03bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8411763598746145137}
+  type: 1
+--- !u!54 &8411763598746145137
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3408302914083866305}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

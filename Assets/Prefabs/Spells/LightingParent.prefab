@@ -168,7 +168,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2147483648
   forceScale: 0.1
-  isDegugging: 1
+  isDegugging: 0
 --- !u!1 &5065930340151496546
 GameObject:
   m_ObjectHideFlags: 0

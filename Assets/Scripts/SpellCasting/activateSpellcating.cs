@@ -37,6 +37,7 @@ public class activateSpellcating : MonoBehaviour
 	[Header("Spell Cast Board")]
 	[SerializeField] GameObject spellBoard;
 	[SerializeField] LayerMask castLayer;
+	[SerializeField, Range(1,5)] float minCastScore = 2.8f;
 	private SpellCastUI spellCastUI;
 
     [Header("Spell Prefabs")]
@@ -72,6 +73,7 @@ public class activateSpellcating : MonoBehaviour
 		switch (state)
 		{
 			case CastingState.SPELL:
+				print(castResult.Score);
 				switch (castResult.Match.Name)
 				{
 					case "IceSP":
@@ -213,7 +215,7 @@ public class activateSpellcating : MonoBehaviour
 			spellCastUI.trackPosition = false;
 			spellCastUI.ClearPositions();
 
-			if (castResult.Score > .6)
+			if (castResult.Score > minCastScore)
 			{
 				state = CastingState.SPELL;
 			}
@@ -260,25 +262,26 @@ public class activateSpellcating : MonoBehaviour
 
 		if (Physics.Raycast(ray, out hit, rayLength, wallLayer))
 		{
-			hitObj.transform.position = hit.point;
-			Quaternion temp;
-			temp = Quaternion.LookRotation(Vector3.Cross(hitObj.transform.forward, hit.normal), hit.normal);
-			
-			hitObj.transform.rotation = temp;
-			print(temp);
-			Debug.DrawLine(ray.origin, hit.point, Color.red);
-
-			if (isFirstCast && interactions.spellCastGrip.action.inProgress)
+			if (hit.point != null)
 			{
-				hitObj.SetActive(false);
-				castWall(hit);
-			}
+				hitObj.transform.position = hit.point;
+				Quaternion temp;
+				temp = Quaternion.LookRotation(Vector3.Cross(hitObj.transform.forward, hit.normal), hit.normal);
 
+				hitObj.transform.rotation = temp;
+				//print(temp);
+				Debug.DrawLine(ray.origin, hit.point, Color.red);
+
+				if (isFirstCast && interactions.spellCastGrip.action.inProgress)
+				{
+					hitObj.SetActive(false);
+					castWall(hit);
+				}
+			}
 		}
         else
         {
 			Debug.DrawLine(ray.origin, ray.origin + ray.direction * 40, Color.green);
-			hitObj.SetActive(false);
 		}
 		
 	}
@@ -286,7 +289,8 @@ public class activateSpellcating : MonoBehaviour
 	private void castWall(RaycastHit hit)
     {
         GameObject wall = Instantiate(spellPrefab.IcePrefab);
-        Wall wallCom = wall.GetComponent<Wall>();
+        Wall wallCom = wall.transform.GetChild(0).GetComponent<Wall>();
+		print(wall.transform.GetChild(0));
 		wallCom.startPoint = hit.point;
 		wallCom.handGrip = interactions.spellCastGrip;
 		wallCom.pointerPosition = handPointer;

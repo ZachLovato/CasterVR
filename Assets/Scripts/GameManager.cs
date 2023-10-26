@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.AI.Navigation;
+using System.Threading;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,10 +30,12 @@ public class GameManager : MonoBehaviour
 
     private void NavMeshUpdate()
     {
-		if (fuTimer >= navRebuildDelay)
-		{
-			_navMeshSurface.BuildNavMesh();
-			fuTimer = 0;
-		}
+        if (fuTimer >= navRebuildDelay)
+        {
+            _navMeshSurface.BuildNavMesh();
+            fuTimer = 0;
+            print("Rebake");
+        }
+        else fuTimer ++;
 	}
 }

@@ -1,0 +1,1205 @@
+fileFormatVersion: 2
+guid: 50237fca91b1f2f4c95c343750ed95b9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: LightingEffect_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 429.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afdb5f7422d425143b669a12d24b55bd
+      internalID: 632915498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_1
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 429.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d05470ff1fd023418ab78d4a9fbde20
+      internalID: -193240378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 429.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf3b0a4a0aa76f4083b44f74ce6a16c
+      internalID: -973854609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_3
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 429.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97d59a79162cc764f82cf82cbd7d491a
+      internalID: -348948892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_4
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 429.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d3fe2898428e334998504e07edcbb8f
+      internalID: -1719557664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_5
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 429.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c54248a908784d14493fbdb73dc8a18b
+      internalID: -732746149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_6
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 429.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faa3bc1ba650cd64c9846e00d87442f9
+      internalID: -2144546728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 358.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34e4d06c170821d4ca6c125fbd9c80ed
+      internalID: -2134458031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_8
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 358.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b976626f80a5f44af887e4211d3f92
+      internalID: -2066318522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_9
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 358.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed514c2d41e579b4baf1d31879e8ddfc
+      internalID: 164501402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_10
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 358.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72e0b6e35447c7147865562fbfb4cf04
+      internalID: -124233130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_11
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 358.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fd4124c10eb6764ca96100e1845988b
+      internalID: -1061620568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_12
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 358.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4783923e74cc32549b82e7f16046c2ea
+      internalID: -1278078368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_13
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 358.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad68ebc379c18db43b524b039f1e56e5
+      internalID: 1041566643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 287.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a71f96204bc3284eb33de56370c1ee4
+      internalID: 1579057665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_15
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 287.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35d4058e46322b24facb06dc9cea9c29
+      internalID: 531346033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_16
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 287.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 168122ea58e2ad141989fd1edbe076cc
+      internalID: -569715784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_17
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 287.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6b93e70d656e6c49b89e53d50afa25e
+      internalID: 2063875217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_18
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 287.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6af896cfb5df7df4f947d0ae6fe14d6e
+      internalID: 1380477472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_19
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 287.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11b47aabf8fdc8e4fbd6ac9d2eb5eee5
+      internalID: -1864929933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_20
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 287.4286
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3ac33eff2cd75a45a5e55ee729446c9
+      internalID: -2115674504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 216.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46a52f743656c7e4097f8a507ecd36e0
+      internalID: 272599096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_22
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 216.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14c0bec641b95034998d5614261933a7
+      internalID: -92395762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_23
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 216.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 837eab6feb8965d4a86a0b4525e57c28
+      internalID: -1502580474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_24
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 216.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02d5b0221802f8e499f38eaf93f9eaac
+      internalID: -495794659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_25
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 216.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb00a39647c3cdd4286434bb419f94b8
+      internalID: -547919791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_26
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 216.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05fbb69d1811bff478046756d5aa084f
+      internalID: -2004601905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_27
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 216.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07f987b31b2531442b331f024649a9fa
+      internalID: -1697133097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 145.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42b750d5804947d4091a1fcdbef9ca92
+      internalID: -505698713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_29
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 145.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bc75617cb0fe2d408b15d49059795d8
+      internalID: 1595344307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_30
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 145.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c8233483c35cce448effed07093f752
+      internalID: -2127538419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_31
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 145.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f4932f2849136a4683aae46e5f95806
+      internalID: -654151779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_32
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 145.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eabf75b2fd2bcb442a6686285f4575b0
+      internalID: 644793118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_33
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 145.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0994032b038811429a8ee135a3dd4d1
+      internalID: -1301714485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_34
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 145.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e0414a033877e741898498bc62aa074
+      internalID: 372907651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 74.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cfd37ec0d695a24c84c1159a71e71a7
+      internalID: -949136328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_36
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 74.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28c39dadbb8bdee46adf8c22766664b9
+      internalID: -314162456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_37
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 74.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9726e2a63b7ca2f4582b226d29807549
+      internalID: -1405632819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_38
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 74.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f83f2d1686508a4c9ee54f444c041a0
+      internalID: -222925111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_39
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 74.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86f99aa1bd803374db7be366f746fd16
+      internalID: 469864125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_40
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 74.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8208f3a6dec1a014abb3b9b3840b1510
+      internalID: 997977623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_41
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 74.42857
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c9435010d96ff24eb30385b43aedf32
+      internalID: 940501641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3.4285736
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9229cc37ac85ff4a91ed22baa0cb819
+      internalID: 1872412923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_43
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 3.4285736
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b277a392f8c016041946023d30c8eddc
+      internalID: 1994658302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_44
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 3.4285736
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c4ab4c4c68383e41b4b327f6f6d1019
+      internalID: -2043038674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_45
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 3.4285736
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b249c81f30f43743846f8616024d91a
+      internalID: -1118930115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_46
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 3.4285736
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 952e8eddc3f2afa4685ae81469545a4e
+      internalID: 1617158033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_47
+      rect:
+        serializedVersion: 2
+        x: 355
+        y: 3.4285736
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f77014e2692f42f458b14482db4642bf
+      internalID: -1509443223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: LightingEffect_48
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 3.4285736
+        width: 71.57143
+        height: 71.57143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66b1737f8b0c69b4b9f75c36ba417cd3
+      internalID: -2108917398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      LightingEffect_0: 632915498
+      LightingEffect_1: -193240378
+      LightingEffect_10: -124233130
+      LightingEffect_11: -1061620568
+      LightingEffect_12: -1278078368
+      LightingEffect_13: 1041566643
+      LightingEffect_14: 1579057665
+      LightingEffect_15: 531346033
+      LightingEffect_16: -569715784
+      LightingEffect_17: 2063875217
+      LightingEffect_18: 1380477472
+      LightingEffect_19: -1864929933
+      LightingEffect_2: -973854609
+      LightingEffect_20: -2115674504
+      LightingEffect_21: 272599096
+      LightingEffect_22: -92395762
+      LightingEffect_23: -1502580474
+      LightingEffect_24: -495794659
+      LightingEffect_25: -547919791
+      LightingEffect_26: -2004601905
+      LightingEffect_27: -1697133097
+      LightingEffect_28: -505698713
+      LightingEffect_29: 1595344307
+      LightingEffect_3: -348948892
+      LightingEffect_30: -2127538419
+      LightingEffect_31: -654151779
+      LightingEffect_32: 644793118
+      LightingEffect_33: -1301714485
+      LightingEffect_34: 372907651
+      LightingEffect_35: -949136328
+      LightingEffect_36: -314162456
+      LightingEffect_37: -1405632819
+      LightingEffect_38: -222925111
+      LightingEffect_39: 469864125
+      LightingEffect_4: -1719557664
+      LightingEffect_40: 997977623
+      LightingEffect_41: 940501641
+      LightingEffect_42: 1872412923
+      LightingEffect_43: 1994658302
+      LightingEffect_44: -2043038674
+      LightingEffect_45: -1118930115
+      LightingEffect_46: 1617158033
+      LightingEffect_47: -1509443223
+      LightingEffect_48: -2108917398
+      LightingEffect_5: -732746149
+      LightingEffect_6: -2144546728
+      LightingEffect_7: -2134458031
+      LightingEffect_8: -2066318522
+      LightingEffect_9: 164501402
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

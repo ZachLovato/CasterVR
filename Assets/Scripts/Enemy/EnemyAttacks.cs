@@ -16,12 +16,12 @@ public class EnemyAttacks : MonoBehaviour
 
 	[SerializeField] private ATTCKING_STATE state;
 	[SerializeField] private GameObject player;
-	[HideInInspector] private EnemyController enemyController;
+	[SerializeField] private EnemyController enemyController;
 
 	[Space, Header("State Vars")]
-	[SerializeField, Range(1,6)] private float CircleDistnce;
-	[SerializeField, Range(1,6)] private float maxRadius;
-	[SerializeField, Range(1,6)] private float minRadius;
+	[SerializeField, Range(1,30)] private float CircleDistnce;
+	[SerializeField, Range(1,30)] private float maxRadius;
+	[SerializeField, Range(1,30)] private float minRadius;
 	[SerializeField, Range(.1f,6)] private float meleeRange;
 
 	[Space, SerializeField, Range(1, 60)] private float AttackDelaySec;
@@ -32,13 +32,14 @@ public class EnemyAttacks : MonoBehaviour
 	[Space, Header("Prefabs")]
 	[SerializeField] private GameObject fireSpell;
 	[SerializeField] private GameObject iceSpell;
-	//[SerializeField] private GameObject windSpell;
 	[SerializeField] private GameObject lightingSpell;
 	[SerializeField] GameObject[] attackPosition;
 
+	
+
 	void Start()
     {
-
+		player = Camera.main.transform.parent.transform.parent.gameObject;
     }
 
 	// Update is called once per frame
@@ -49,6 +50,7 @@ public class EnemyAttacks : MonoBehaviour
 			case ATTCKING_STATE.Circle: CirclePlayer(); break;
 			case ATTCKING_STATE.SpellShot: SpellShot(); break;
 			case ATTCKING_STATE.Slap: Slap(); break;
+			default: break;
 		}
 		/*
 		*/
@@ -58,9 +60,18 @@ public class EnemyAttacks : MonoBehaviour
 	// neutral state, circles around the player
 	private void CirclePlayer()
 	{
-		if (Vector3.Distance(transform.position, player.transform.position) < CircleDistnce)
+		float dist = Vector3.Distance(transform.position, player.transform.position);
+		print(dist);
+		if (dist < CircleDistnce)
 		{
-			enemyController.setNewTargetPosition(GetPointInCircle());
+			if (enemyController != null)
+			{
+				Vector3 point = GetPointInCircle();
+				print(point.x + " " +  point.y + " " + point.z);
+				enemyController.setNewTargetPosition(point);
+			}
+			else print("EnemyController is null");
+			
 		}
 
 		if (timer >= circleTimer)
@@ -123,7 +134,15 @@ public class EnemyAttacks : MonoBehaviour
 		{
 			// attack the player
 		}
-		else enemyController.setNewTargetPosition(player.transform.position);
+		else
+		{
+			if (enemyController != null)
+			{
+				enemyController.setNewTargetPosition(player.transform.position);
+			}
+			else print("EnemyController is null");
+			
+		}
 
 		state = ATTCKING_STATE.Circle;
 	}
@@ -133,6 +152,7 @@ public class EnemyAttacks : MonoBehaviour
 	{
 		Vector3 dir = player.transform.position - transform.position;
 		dir = dir.normalized;
-		return transform.position + (dir * Random.Range(minRadius, maxRadius));
+		dir = transform.position + (dir * Random.Range(minRadius, maxRadius));
+		return dir;
 	}
 }

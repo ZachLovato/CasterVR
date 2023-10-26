@@ -23,6 +23,8 @@ public class Lighting : MonoBehaviour
     private GameObject dometracker;
     #endregion
 
+    [SerializeField] private bool isDebugging = false;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -56,17 +58,17 @@ public class Lighting : MonoBehaviour
             switch (calculateDistance())
             {
 				case 0:
-                    print("spell Higher casting");
+                    printDebug("spell Higher casting");
                     // create a object that will do damage ina circle
                     castDome();
 					break;
 				case 1:
-					print("spell Lower casting");
+					printDebug("spell Lower casting");
                     // ground attack or shock "Wave"
                     castWave();
 					break;
 				case -1:
-                    Debug.Log("Error Calculating Distance");
+					printDebug("Error Calculating Distance");
 					break;
 			}
 
@@ -112,6 +114,14 @@ public class Lighting : MonoBehaviour
         if (casted <= created) return 1;
         else if (casted > created) return 0;
         else return -1; // error code
+    }
+
+    private void printDebug(string msg)
+    {
+        if(isDebugging)
+        {
+            Debug.Log(msg);
+        }
     }
 
 }

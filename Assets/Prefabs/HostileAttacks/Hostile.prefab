@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43ea6f94ba3894f43b1cbaf7159dbe3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isdummy: 0
   state: 0
   agent: {fileID: 4157538182924707306}
   idleDuration: 2
@@ -206,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   player: {fileID: 0}
+  enemyController: {fileID: 4124330431252080019}
   CircleDistnce: 2.18
   maxRadius: 4.11
   minRadius: 2.45
@@ -456,7 +458,7 @@ MonoBehaviour:
   isEye: 1
   mask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 65544
   angleWidth: 92.8
   castAmount: 7
   sightRange: 9.21

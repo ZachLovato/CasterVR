@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5416888481699845353}
   - component: {fileID: 5731357707716704224}
   - component: {fileID: 3971890939677597522}
+  - component: {fileID: 7042452968510442748}
+  - component: {fileID: 6708818555771631385}
   m_Layer: 0
   m_Name: EnemyFireBall
   m_TagString: Untagged
@@ -121,3 +123,44 @@ MonoBehaviour:
   DestoryDelay: 0
   useTimer: 1
   DestoryParent: 0
+--- !u!114 &7042452968510442748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007329400185407569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba150edfd3c02d409c5818e00e03bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 6708818555771631385}
+  type: 0
+--- !u!54 &6708818555771631385
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4007329400185407569}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

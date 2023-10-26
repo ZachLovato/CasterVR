@@ -53,6 +53,7 @@ public class Fireball : MonoBehaviour
 	void Start()
     {
         rb = GetComponent<Rigidbody>();
+		dt = GetComponent<DestoryTimer>();
     }
 
     // Update is called once per frame

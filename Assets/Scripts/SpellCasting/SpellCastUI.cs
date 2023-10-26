@@ -17,11 +17,11 @@ public class SpellCastUI : MonoBehaviour
     private Vector2 lastPos = Vector2.zero;
 
     [SerializeField] DollerHolder dh;
+    [SerializeField] LineRenderer lr;
 
     // Update is called once per frame
     void Update()
     {
-
         if (trackPosition)
         {
 			if (frame % frameDelay == 0)
@@ -29,10 +29,12 @@ public class SpellCastUI : MonoBehaviour
                 Vector2 pos = Vector2.zero;
                 pos.x = tracer.transform.localPosition.x;
                 pos.y = tracer.transform.localPosition.y;
+                pos /= 2.1f;
 
                 if (lastPos != pos) 
                 {
 					positions.Add(pos);
+                    addPosition(tracer.transform.position);
 					lastPos = pos;
                 }
             }
@@ -60,12 +62,22 @@ public class SpellCastUI : MonoBehaviour
     {
         positions.Clear();
         lastPos = Vector2.zero;
+        lr.positionCount = 0;
     }
 
     public void RecordSpell(string name)
     {
         dh.SavePattern(name, positions);
 
+	}
+
+	private void addPosition(Vector3 position)
+	{
+        //Vector3 pos = transform.position;
+        //pos.x += position.x;
+        //pos.y += position.y;
+		lr.positionCount++;
+		lr.SetPosition(lr.positionCount - 1, position);
 	}
 
 }

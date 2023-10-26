@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8cc48ceb989e2b468d311c8f539ba4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDebugging: 1
+  isDebugging: 0
   handGrip:
     m_UseReference: 0
     m_Action:

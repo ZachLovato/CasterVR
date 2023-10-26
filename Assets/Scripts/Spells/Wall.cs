@@ -13,6 +13,10 @@ public class Wall : MonoBehaviour
     [SerializeField] public float scaleSpeed = 1;
     [SerializeField] public bool debuging = false;
 
+    [SerializeField] Transform continuesParticle;
+    [SerializeField] GameObject oneTimeParticle;
+    [SerializeField] Transform particlePos;
+
     private bool isScriptDone = false;
 
     public activateSpellcating asc;
@@ -38,14 +42,34 @@ public class Wall : MonoBehaviour
         {
             scaleWall();
             isScriptDone = true;
-        }
+			continuesParticle.position = particlePos.position;
+			continuesParticle.rotation = transform.rotation;
+		}
         else if (isScriptDone)
         {
-            this.enabled = false;
-            asc.ResetFirstSpell();
-        }
+			
+			asc.ResetFirstSpell();
+            GameObject part = Instantiate(oneTimeParticle);
+            part.transform.SetParent(transform.parent.transform);
+            part.transform.position = transform.GetChild(0).position;
+            ParticleSystem ps = part.GetComponent<ParticleSystem>();
+            var pss = ps.shape;
+            Vector3 scale = transform.localScale;
+            scale.y /= 6;
 
-    }
+			pss.scale = scale;
+
+            var burst = ps.emission;
+            burst.burstCount = (int)(20 * scale.y) * 2;
+
+			this.enabled = false;
+
+            ps.Play();
+
+            
+		}
+		
+	}
 
     private void scaleWall()
     {

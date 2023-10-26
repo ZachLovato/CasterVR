@@ -16,9 +16,6 @@ public class Wind : MonoBehaviour
 	bool didLetGoGrip = false;
 	bool firstHeldFrame = true;
 
-	[SerializeField] float centToHand;
-	[SerializeField] float centToCast;
-
 	[Header("Wind Attack")]
 	[SerializeField] LayerMask mask;
 	[SerializeField, Range(15, 135)] private float angleWidth = 15;
@@ -78,6 +75,9 @@ public class Wind : MonoBehaviour
 
 	private int calculateDistance()
 	{
+		float centToHand;
+		float centToCast;
+
 		Vector2 center = Vector2.zero;
 		center.x = Camera.main.transform.position.x;
 		center.y = Camera.main.transform.position.z;

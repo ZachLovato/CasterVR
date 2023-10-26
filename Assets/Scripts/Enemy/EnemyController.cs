@@ -7,17 +7,20 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField] bool isdummy = false;
     private float timer = 0;
     enum STATE
     {
+        
         IDLE,
         PATROL,
         WANDER,
         CHASE,
         ATTACK,
         DODGE,
-        RETREAT
-    }
+        RETREAT,
+		Dummey
+	}
 
     [SerializeField] private STATE state;
     [SerializeField] private NavMeshAgent agent;
@@ -52,6 +55,13 @@ public class EnemyController : MonoBehaviour
 
 	[Space, SerializeField] bool isDegugging = false;
 	[SerializeField] bool isDrawingGizmo = false;
+
+    private bool doOnce = true;
+    private Vector3 pos;
+
+
+    public bool isDisable = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,9 +75,11 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         //agent.destination = patrolLocations[patrolNum].transform.position;
+        if (isdummy) state = STATE.Dummey;
 
         switch (state)
         {
+            case STATE.Dummey: break;
             case STATE.IDLE: IdleState(); break;
             case STATE.PATROL: PatrolState(); break;
             case STATE.WANDER: WanderState(); break;
@@ -103,7 +115,13 @@ public class EnemyController : MonoBehaviour
 
     public void setNewTargetPosition(Vector3 newPos)
     {
-        agent.destination = newPos;
+		pos = newPos;
+		if (doOnce)
+        {
+			
+            doOnce = false;
+		}
+        
     }
 
 	private bool checkTimer(float duration)
@@ -220,6 +238,7 @@ public class EnemyController : MonoBehaviour
     private void AttackState()
     {
         attack.enabled = true;
+        if (pos != null) agent.SetDestination(pos);
     }
 
 

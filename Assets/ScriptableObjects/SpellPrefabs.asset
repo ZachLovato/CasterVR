@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47e200f9f8b50644aef82b33ec079c1, type: 3}
   m_Name: SpellPrefabs
   m_EditorClassIdentifier: 
-  IcePrefab: {fileID: 7255267050393222186, guid: 74cfc9852df07f24ca3abccb44b3869e, type: 3}
+  IcePrefab: {fileID: 1876432420114557223, guid: b96f2a27239c3a7488d6d21162f8afc6, type: 3}
   FirePrefab: {fileID: 7567492715124960361, guid: acea813aafca97e4bab48e6cbae03347, type: 3}
   WindPrefab: {fileID: 1157993896718951073, guid: 6012d4872c83ad144a51461640284fad, type: 3}
   LightingPrefab: {fileID: 3371363339447610636, guid: 7e6ab59415d41934bb3c53de3f2fa9f7, type: 3}
