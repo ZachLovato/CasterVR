@@ -19,7 +19,7 @@ public class EnemyAttacks : MonoBehaviour
 	[SerializeField] private EnemyController enemyController;
 
 	[Space, Header("State Vars")]
-	[SerializeField, Range(1,30)] private float CircleDistnce;
+	[SerializeField, Range(1,30)] private float CircleDistance;
 	[SerializeField, Range(1,30)] private float maxRadius;
 	[SerializeField, Range(1,30)] private float minRadius;
 	[SerializeField, Range(.1f,6)] private float meleeRange;
@@ -35,16 +35,23 @@ public class EnemyAttacks : MonoBehaviour
 	[SerializeField] private GameObject lightingSpell;
 	[SerializeField] GameObject[] attackPosition;
 
+	Vector3 nullPoint = new Vector3(.056f, .056f, .056f);
+	Vector3 circlePosition;
+
+
 	
 
 	void Start()
     {
 		player = Camera.main.transform.parent.transform.parent.gameObject;
+		circlePosition = nullPoint;
     }
 
 	// Update is called once per frame
     void Update()
     {
+		print(state);
+
 		switch (state)
 		{
 			case ATTCKING_STATE.Circle: CirclePlayer(); break;
@@ -60,19 +67,51 @@ public class EnemyAttacks : MonoBehaviour
 	// neutral state, circles around the player
 	private void CirclePlayer()
 	{
+		//float dist = Vector3.Distance(transform.position, player.transform.position);
+		//print(dist);
+		//if (dist < CircleDistnce)
+		//{
+		//	if (enemyController != null)
+		//	{
+		//		Vector3 point = GetPointInCircle();
+		//		print(point.x + " " +  point.y + " " + point.z);
+		//		enemyController.setNewTargetPosition(point);
+		//	}
+		//	else print("EnemyController is null");
+
+		//}
+
+		//checks the distance from the player 
+		// if the distance is smaller then min radius
+		// check if there is a position around the player that they can go to
+
 		float dist = Vector3.Distance(transform.position, player.transform.position);
-		print(dist);
-		if (dist < CircleDistnce)
-		{
-			if (enemyController != null)
+		if (dist < CircleDistance) 
+		{ 
+			if (circlePosition == null || circlePosition == nullPoint)
 			{
-				Vector3 point = GetPointInCircle();
-				print(point.x + " " +  point.y + " " + point.z);
-				enemyController.setNewTargetPosition(point);
+				circlePosition = GetPointInCircle();
+				print("Getting the first Point");
 			}
-			else print("EnemyController is null");
-			
+			else if (Vector3.Distance(circlePosition, player.transform.position) < CircleDistance)
+			{
+				circlePosition = GetPointInCircle();
+				print("Getting a new point: " + circlePosition.ToString());
+			}
+			else
+			{
+				enemyController.setNewTargetPosition(circlePosition);
+			}
 		}
+		else
+		{
+			enemyController.setNewTargetPosition(player.transform.position);
+		}
+
+		Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+		float str = Mathf.Min(25 * Time.deltaTime, 1);
+		transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
+
 
 		if (timer >= circleTimer)
 		{
@@ -84,6 +123,8 @@ public class EnemyAttacks : MonoBehaviour
 					state = ATTCKING_STATE.Slap; break;
 			}
 			timer = 0;
+			circlePosition = nullPoint;
+			print("Changing State, " + state);
 		}
 		else
 		{
@@ -96,6 +137,8 @@ public class EnemyAttacks : MonoBehaviour
 	private void SpellShot()
 	{
 		int spell = Random.Range(0, 4 - 1);
+
+		print("Casting Spell");
 
 		switch (spell)
 		{
@@ -130,6 +173,7 @@ public class EnemyAttacks : MonoBehaviour
 	// melee
 	private void Slap()
 	{
+		print("Going in for a slap");
 		if (Vector3.Distance(transform.position, player.transform.position) < meleeRange)
 		{
 			// attack the player

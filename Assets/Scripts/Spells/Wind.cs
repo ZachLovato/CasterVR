@@ -24,6 +24,7 @@ public class Wind : MonoBehaviour
 	[SerializeField, Range(1, 10)] private float radius = 1;
 
 	[SerializeField] float damage;
+	[SerializeField] GameObject WindParticlePrefab;
 
 	private void Awake()
 	{
@@ -61,6 +62,10 @@ public class Wind : MonoBehaviour
 					//cast attack
 					debugPrint("Casted an Attack");
 					attack();
+					WindParticlePrefab = Instantiate(WindParticlePrefab);
+					WindParticlePrefab.transform.rotation = Camera.main.transform.rotation;
+					WindParticlePrefab.transform.position = transform.position;
+					WindParticlePrefab.GetComponent<ParticleSystem>().Play();
 					break;
 			}
 

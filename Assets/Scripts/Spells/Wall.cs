@@ -60,7 +60,7 @@ public class Wall : MonoBehaviour
 			pss.scale = scale;
 
             var burst = ps.emission;
-            burst.burstCount = (int)(20 * scale.y) * 2;
+            burst.burstCount = Mathf.Clamp((int)(20 * scale.y) * 2,20, 180);
 
 			this.enabled = false;
 
