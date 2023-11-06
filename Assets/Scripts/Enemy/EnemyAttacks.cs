@@ -67,20 +67,6 @@ public class EnemyAttacks : MonoBehaviour
 	// neutral state, circles around the player
 	private void CirclePlayer()
 	{
-		//float dist = Vector3.Distance(transform.position, player.transform.position);
-		//print(dist);
-		//if (dist < CircleDistnce)
-		//{
-		//	if (enemyController != null)
-		//	{
-		//		Vector3 point = GetPointInCircle();
-		//		print(point.x + " " +  point.y + " " + point.z);
-		//		enemyController.setNewTargetPosition(point);
-		//	}
-		//	else print("EnemyController is null");
-
-		//}
-
 		//checks the distance from the player 
 		// if the distance is smaller then min radius
 		// check if there is a position around the player that they can go to
@@ -91,12 +77,12 @@ public class EnemyAttacks : MonoBehaviour
 			if (circlePosition == null || circlePosition == nullPoint)
 			{
 				circlePosition = GetPointInCircle();
-				print("Getting the first Point");
+				//print("Getting the first Point");
 			}
 			else if (Vector3.Distance(circlePosition, player.transform.position) < CircleDistance)
 			{
 				circlePosition = GetPointInCircle();
-				print("Getting a new point: " + circlePosition.ToString());
+				//print("Getting a new point: " + circlePosition.ToString());
 			}
 			else
 			{
@@ -136,29 +122,38 @@ public class EnemyAttacks : MonoBehaviour
 	// randomly picks one of the spells to use
 	private void SpellShot()
 	{
-		int spell = Random.Range(0, 4 - 1);
+		//int spell = Random.Range(0, 4 - 1);
+		int spell = 0;
 
 		print("Casting Spell");
+
+		GameObject go;
 
 		switch (spell)
 		{
 			case 0:
 				// spawns an npc type Fireball
-				GameObject go = Instantiate(fireSpell);
+				go = Instantiate(fireSpell);
 				go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.Fireball;
 				go.transform.rotation = transform.rotation;
+				go.transform.position = attackPosition[0].transform.position;
+				print("Casting fireSpell");
 				break;
 			case 1:
 				// spawns an npc type WAll
-				GameObject gos = Instantiate(iceSpell);
-				gos.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.IceWall;
-				gos.transform.rotation = transform.rotation;
+				go = Instantiate(iceSpell);
+				go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.IceWall;
+				go.transform.rotation = transform.rotation;
+				go.transform.position = attackPosition[1].transform.position;
+				print("Casting iceSpell");
 				break;
 			case 2:
 				// Lighting wave
-				GameObject goss = Instantiate(lightingSpell);
-				goss.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.ShockWave;
-				goss.transform.rotation = transform.rotation;
+				go = Instantiate(lightingSpell);
+				go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.ShockWave;
+				go.transform.rotation = transform.rotation;
+				go.transform.position = attackPosition[2].transform.position;
+				print("Casting lightingSpell");
 
 				break;
 			case 3:

@@ -41,7 +41,7 @@ public class EnemyAttackItems : MonoBehaviour
                 }
                 break;
             case ATK_TYPE.ShockWave:
-				rb.AddForce(transform.forward * 5, ForceMode.Force);
+				rb.AddForce(transform.forward * 10, ForceMode.Force);
 				break;
             case ATK_TYPE.Wind:
                 break;
@@ -52,13 +52,24 @@ public class EnemyAttackItems : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (type != ATK_TYPE.IceWall)
+        if (other.tag == "Hostile") return;
+
+        if (type != ATK_TYPE.IceWall)
         {
             if (other.gameObject.tag == "Player")
             {
+                print("Hit Player");
                 GetComponent<Health>().AddHealth(-10);
-            }
-        }
-        Destroy(gameObject);
+				Destroy(gameObject);
+			}
+            else if (other.gameObject.tag != "Floor")
+            {
+				print("Hit " + other.name);
+				Destroy(gameObject);
+			}
+			
+		}
+        else return;
+        
 	}
 }

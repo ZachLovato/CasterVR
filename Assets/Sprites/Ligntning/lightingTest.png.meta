@@ -1,0 +1,831 @@
+fileFormatVersion: 2
+guid: b6c392f608487c94d972a3eb5108b2f2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 512
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 2
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: lightingTest_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 438.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdb75b0e6bec0df46a7937bbd53b3839
+      internalID: 1497868362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 438.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76e89f1e13c2c0a40b0265f06290e30c
+      internalID: 831765036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_2
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 438.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e974494a45fbcf5458ebd1e5dd3558f8
+      internalID: -493360962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_3
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 438.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d185b628a79529479d862a09041b4b9
+      internalID: 56578617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_4
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 438.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c46afd67c271f0d4d8c0b0badebe4abf
+      internalID: 2130838260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_5
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 438.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d9806f236b0bc1499a83e80db5d026b
+      internalID: 574552381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_6
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 365.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73196268ca3667446a187243e457bbf6
+      internalID: -1693779913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_7
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 365.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d56ef0523b1ee448340252fd0d7b53
+      internalID: -710931229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_8
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 365.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a5590dcf3e005840a0d4b3a22e6af26
+      internalID: 2130064524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 292.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6fc975c35bac2746bbf0324fbff05de
+      internalID: -1164161173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_10
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 292.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7571dda6a2404e4193e142542dfb2a3
+      internalID: 606357429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_11
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 292.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80c844b5d10bd644b9606008cbe27993
+      internalID: 205420382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_12
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 292.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a5ab6462f6be664eaaead20b6535a5e
+      internalID: -1486552917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_13
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 292.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a153b305a252f2f44a47553e6e51de6c
+      internalID: 1444345962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_14
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 219.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8aba8d8033321f040853b449970ccc0a
+      internalID: 2011396234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_15
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 219.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0ccfe4b82ec72f4aa061efc4a4faf2f
+      internalID: 143458508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_16
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 219.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51dca15ae66658f45befd8b0b72da050
+      internalID: -1373728395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_17
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 219.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a29a383efd9c4844b76a6dac060fad3
+      internalID: -1903512814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_18
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 219.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790d7fb77731fd64592372dd8a0ac639
+      internalID: -1324067379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 146.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc68ae414578d514a8ce20f1457aa340
+      internalID: 1810875438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_20
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 146.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a23927d4b8951e74e8d001e8f4ccd17a
+      internalID: -1520723440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_21
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 146.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 923d1556e78e5fe47bba047442bb0704
+      internalID: -776443684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_22
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 146.85715
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24fed2a91ba831b4f88e9f286e645f42
+      internalID: 1743477894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 73.85714
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35dafa53be60a1b4c8b7640b98987892
+      internalID: 1246272041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_24
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 73.85714
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebf5f6f634739f64bb131f4f4533d359
+      internalID: -1886255738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_25
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 73.85714
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc4ff29405c7ed442b0dab6ef34f44e4
+      internalID: -2024761900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_26
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 73.85714
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f184d6d890e87f048807364d77d2ef45
+      internalID: -455869083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_27
+      rect:
+        serializedVersion: 2
+        x: 438
+        y: 73.85714
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d4093f0f525cc94381bf2c75c2df576
+      internalID: 776786909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.8571396
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ded4d7f3d406c46498ee21a54e72327a
+      internalID: -1136152259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_29
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 0.8571396
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2194e921a8743894e801ae40706d1176
+      internalID: 1666341777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_30
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0.8571396
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74b730c31d02e9c40ae5b15398b66058
+      internalID: -1281752589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: lightingTest_31
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 0.8571396
+        width: 73.14286
+        height: 73.14286
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd0988e7821773f44ab601d6e43a76fd
+      internalID: -1706152162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      lightingTest_0: 1497868362
+      lightingTest_1: 831765036
+      lightingTest_10: 606357429
+      lightingTest_11: 205420382
+      lightingTest_12: -1486552917
+      lightingTest_13: 1444345962
+      lightingTest_14: 2011396234
+      lightingTest_15: 143458508
+      lightingTest_16: -1373728395
+      lightingTest_17: -1903512814
+      lightingTest_18: -1324067379
+      lightingTest_19: 1810875438
+      lightingTest_2: -493360962
+      lightingTest_20: -1520723440
+      lightingTest_21: -776443684
+      lightingTest_22: 1743477894
+      lightingTest_23: 1246272041
+      lightingTest_24: -1886255738
+      lightingTest_25: -2024761900
+      lightingTest_26: -455869083
+      lightingTest_27: 776786909
+      lightingTest_28: -1136152259
+      lightingTest_29: 1666341777
+      lightingTest_3: 56578617
+      lightingTest_30: -1281752589
+      lightingTest_31: -1706152162
+      lightingTest_4: 2130838260
+      lightingTest_5: 574552381
+      lightingTest_6: -1693779913
+      lightingTest_7: -710931229
+      lightingTest_8: 2130064524
+      lightingTest_9: -1164161173
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -21,6 +21,8 @@ public class LightingAttacks : MonoBehaviour
     [SerializeField] private float forceScale;
 	[SerializeField] private bool isDegugging = false;
 
+	[SerializeField] private GameObject auraParticle;
+
 	private void FixedUpdate()
 	{
 		switch (state)
@@ -36,6 +38,11 @@ public class LightingAttacks : MonoBehaviour
 					CapsuleCollider cc = GetComponent<CapsuleCollider>();
 					isFirstPass = false;
 					cc.radius = 11;
+
+					auraParticle = Instantiate(auraParticle, transform);
+					ParticleSystem ps = auraParticle.GetComponent<ParticleSystem>();
+					ps.Play();
+
 				}
 				break;
 		}
@@ -67,6 +74,7 @@ public class LightingAttacks : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		//print(other.gameObject.name);
 		switch (state)
 		{
 			case ATTACKSTATE.Wave:
@@ -77,10 +85,13 @@ public class LightingAttacks : MonoBehaviour
 				else printDebug(other.gameObject.name + " is not a Hostile");
 				break;
 			case ATTACKSTATE.Aura:
+				print(other.gameObject.name);
 				if (other.gameObject.tag == "Hostile")
 				{
 					DoTEffect dot = other.AddComponent<DoTEffect>();
 					dot.setStats(10, 5, 2);
+					dot.startDoTTimer = true;
+					printDebug("Hostile found and killing");
 				}
 				break;
 		}

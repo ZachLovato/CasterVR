@@ -262,6 +262,6 @@ public class EnemyController : MonoBehaviour
 
 	private void printDebug(string msg)
     {
-        if (isDegugging) { Debug.Log(msg); }
+        //if (isDegugging) { Debug.Log(msg); }
     }
 }

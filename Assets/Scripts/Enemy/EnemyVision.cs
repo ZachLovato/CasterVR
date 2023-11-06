@@ -5,10 +5,6 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class EnemyVision : MonoBehaviour
 {
-    //private EnemyController _enemyController;
-
-	[SerializeField] private bool isEye = false;
-
 	[Header("Sight Lines")]
 	[SerializeField] LayerMask mask;
 	[SerializeField, Range(15, 135)] private float angleWidth = 15;
@@ -20,30 +16,10 @@ public class EnemyVision : MonoBehaviour
 
 	private GameObject player;
 
-    void Start()
-    {
-        //_enemyController = transform.parent.GetComponent<EnemyController>();
-    }
 
-    // Update is called once per frame
     void Update()
     {
-		//float angle = angleWidth / castAmount;
-		//float currAngle = -(angleWidth * 0.5f);
-		//Ray drawRay;
-		//Vector3 look = transform.parent.transform.forward;
 
-		//for (int i = 0; i <= castAmount; i++)
-		//{
-		//	drawRay = new Ray(transform.position, Quaternion.Euler(0, currAngle, 0) * look);
-		//	currAngle += angle;
-
-		//	if (Physics.SphereCast(drawRay, radius, out RaycastHit hit, sightRange, mask))
-		//	{
-		//		_enemyController.FoundPlayer(hit.transform.gameObject);
-		//		if (isdebugging) Debug.Log("Saw Player");
-		//	}
-		//}
 	}
 
 	public bool isPlayerSeen(bool showDebug = false)

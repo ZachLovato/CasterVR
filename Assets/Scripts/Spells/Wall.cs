@@ -9,6 +9,7 @@ public class Wall : MonoBehaviour
 	[HideInInspector] public InputActionProperty handGrip;
 
 	[HideInInspector] public Vector3 startPoint;
+	[HideInInspector] public GameObject castPoint;
 
     [SerializeField] public float scaleSpeed = 1;
     [SerializeField] public bool debuging = false;
@@ -24,12 +25,17 @@ public class Wall : MonoBehaviour
     public Vector3 normal;
     public Quaternion upRotation;
 
+    private bool isDoneOnce = true;
+
     // Start is called before the first frame update
     void Start()
     {
 		transform.position = startPoint;
 
         startPoint.y = pointerPosition.transform.position.y;
+
+        castPoint = new GameObject();
+        castPoint.transform.SetParent(Camera.main.transform);
 
         if (debuging) print(startPoint);
 	}
@@ -40,6 +46,11 @@ public class Wall : MonoBehaviour
 
         if (handGrip.action.inProgress)
         {
+            if (isDoneOnce)
+            {
+                castPoint.transform.position = transform.position;
+                isDoneOnce = false;
+            }
             scaleWall();
             isScriptDone = true;
 			continuesParticle.position = particlePos.position;
@@ -66,6 +77,14 @@ public class Wall : MonoBehaviour
 
             ps.Play();
 
+
+            if (TryGetComponent<DestoryTimer>(out DestoryTimer dt))
+            {
+                dt.useTimer = true;
+
+            }
+
+            GameManager.onRebakeNaveMesh();
             
 		}
 		
@@ -75,6 +94,7 @@ public class Wall : MonoBehaviour
     {
 		//float dis = Vector3.Distance(startPoint, pointerPosition.transform.position);
 		float dis = pointerPosition.transform.position.y - startPoint.y;
+		//float dis = pointerPosition.transform.position.y - castPoint.transform.position.y;
         dis = Mathf.Clamp(dis, -4, 2);
 
         if (dis < 0)

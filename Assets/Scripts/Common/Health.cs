@@ -25,7 +25,11 @@ public class Health : MonoBehaviour
     {
         if(isNonPlayer)
         {
-            if (HP <= 0) isDead = true;
+            if (HP <= 0)
+            {
+                isDead = true;
+                WaveManager.onRemoveHostile(gameObject);
+            }
         }
 
         if (isDead)
