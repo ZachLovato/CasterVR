@@ -102,7 +102,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   handObject: {fileID: 0}
-  asc: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 1024
@@ -111,7 +110,12 @@ MonoBehaviour:
   castRange: 5
   radius: 1
   damage: 10
-  WindParticlePrefab: {fileID: 8524550882542568255, guid: 26048bb67ed81314f99da3de9cc58b2e, type: 3}
+  WindParticlePrefab:
+  - {fileID: 8524550882542568255, guid: 26048bb67ed81314f99da3de9cc58b2e, type: 3}
+  - {fileID: 7961961853038411748, guid: a2fb973182e40f34ab0cc6cc75cf6bf8, type: 3}
+  floor:
+    serializedVersion: 2
+    m_Bits: 2147483648
 --- !u!33 &4755596569804251997
 MeshFilter:
   m_ObjectHideFlags: 0

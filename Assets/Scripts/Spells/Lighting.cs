@@ -17,7 +17,7 @@ public class Lighting : MonoBehaviour
 
     private bool isFirstCast = true;
 
-    [HideInInspector] public activateSpellcating asc;
+    //[HideInInspector] public activateSpellcating asc;
     [HideInInspector] public GameObject loc;
 
     private GameObject dometracker;
@@ -86,8 +86,9 @@ public class Lighting : MonoBehaviour
             go.transform.SetParent(Camera.main.transform);
             go.transform.localPosition = Vector3.zero;
 
-            asc.ResetFirstSpell();
-        }
+			activateSpellcating.onCastReset();
+			//asc.ResetFirstSpell();
+		}
     }
 
     private void castWave()
@@ -98,7 +99,8 @@ public class Lighting : MonoBehaviour
             Vector3 spawnLoc = transform.position;
             spawnLoc.y = - 100;
             go.transform.position = spawnLoc;
-			asc.ResetFirstSpell();
+			activateSpellcating.onCastReset();
+			//asc.ResetFirstSpell();
 		}
 	}
 

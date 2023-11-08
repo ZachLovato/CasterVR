@@ -48,7 +48,7 @@ public class Fireball : MonoBehaviour
 
 	[HideInInspector] public InputActionProperty spellCastGrip;
 
-	[HideInInspector] public activateSpellcating asc;
+	//[HideInInspector] public activateSpellcating asc;
 
 	private Vector3 prevPos;
 	[SerializeField] private GameObject prevObj;
@@ -87,7 +87,8 @@ public class Fireball : MonoBehaviour
 				if (doOnce)
 				{
 					rb.AddForce(Vector3.Normalize(transform.position - prevPos), ForceMode.Impulse);
-					asc.ResetFirstSpell();
+					//asc.ResetFirstSpell();
+					activateSpellcating.onCastReset();
 					doOnce = false;
 
 					// set timer

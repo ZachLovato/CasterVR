@@ -10,7 +10,7 @@ public class Wind : MonoBehaviour
 	[HideInInspector] public InputActionProperty handGrip;
 
 	[HideInInspector] public GameObject handObject;
-	[HideInInspector] public activateSpellcating asc;
+	//[HideInInspector] public activateSpellcating asc;
 	private GameObject initalCastLocation;
 
 	bool didLetGoGrip = false;
@@ -24,7 +24,9 @@ public class Wind : MonoBehaviour
 	[SerializeField, Range(1, 10)] private float radius = 1;
 
 	[SerializeField] float damage;
-	[SerializeField] GameObject WindParticlePrefab;
+	[SerializeField] GameObject[] WindParticlePrefab;
+
+	[SerializeField] LayerMask floor;
 
 	private void Awake()
 	{
@@ -57,19 +59,27 @@ public class Wind : MonoBehaviour
 				case 0:
 					//cast buff
 					debugPrint("Casted a Buff");
+					WindParticlePrefab[1] = Instantiate(WindParticlePrefab[1]);
+					WindParticlePrefab[1].transform.parent = Camera.main.transform.parent.transform;
+					if (Physics.Raycast(Camera.main.transform.position, -Vector3.up, out RaycastHit hit, 4, floor))
+					{
+						WindParticlePrefab[1].transform.position = hit.point;
+					}
+
 					break;
 				case 1:
 					//cast attack
 					debugPrint("Casted an Attack");
 					attack();
-					WindParticlePrefab = Instantiate(WindParticlePrefab);
-					WindParticlePrefab.transform.rotation = Camera.main.transform.rotation;
-					WindParticlePrefab.transform.position = transform.position;
-					WindParticlePrefab.GetComponent<ParticleSystem>().Play();
+					WindParticlePrefab[0] = Instantiate(WindParticlePrefab[0]);
+					WindParticlePrefab[0].transform.rotation = Camera.main.transform.rotation;
+					WindParticlePrefab[0].transform.position = transform.position;
+					WindParticlePrefab[0].GetComponent<ParticleSystem>().Play();
 					break;
 			}
 
-			asc.ResetFirstSpell();
+			//asc.ResetFirstSpell();
+			activateSpellcating.onCastReset();
 			Destroy(initalCastLocation);
 			Destroy(gameObject);
 

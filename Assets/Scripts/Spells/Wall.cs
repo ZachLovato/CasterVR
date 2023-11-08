@@ -20,7 +20,7 @@ public class Wall : MonoBehaviour
 
     private bool isScriptDone = false;
 
-    public activateSpellcating asc;
+    //public activateSpellcating asc;
 
     public Vector3 normal;
     public Quaternion upRotation;
@@ -58,9 +58,10 @@ public class Wall : MonoBehaviour
 		}
         else if (isScriptDone)
         {
-			
-			asc.ResetFirstSpell();
-            GameObject part = Instantiate(oneTimeParticle);
+
+			//asc.ResetFirstSpell();
+			activateSpellcating.onCastReset();
+			GameObject part = Instantiate(oneTimeParticle);
             part.transform.SetParent(transform.parent.transform);
             part.transform.position = transform.GetChild(0).position;
             ParticleSystem ps = part.GetComponent<ParticleSystem>();

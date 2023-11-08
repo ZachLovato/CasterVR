@@ -53,6 +53,9 @@ public class activateSpellcating : MonoBehaviour
 
 	[SerializeField] CustomSpell customSpell;
 
+	public delegate void ResetCasting();
+	public static ResetCasting onCastReset;
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -61,6 +64,8 @@ public class activateSpellcating : MonoBehaviour
 		castResult = new DollarRecognizer.Result();
 		state = CastingState.NORMAL;
 		hitObj = Instantiate(hitObjPrefab);
+
+		onCastReset += ResetFirstSpell;
     }
 
     // Update is called once per frame
@@ -294,7 +299,7 @@ public class activateSpellcating : MonoBehaviour
 		wallCom.startPoint = hit.point;
 		wallCom.handGrip = interactions.spellCastGrip;
 		wallCom.pointerPosition = handPointer;
-		wallCom.asc = this;
+		//wallCom.asc = this;
         isFirstCast = false;
 
 		//wall.transform.rotation = Quaternion.LookRotation(Vector3.Cross(wall.transform.right, hit.normal), hit.normal);
@@ -312,7 +317,7 @@ public class activateSpellcating : MonoBehaviour
 			Fireball fb = spellObject.GetComponent<Fireball>();
 			fb.holdPos = SpellStartPoint;
 			fb.spellCastGrip = interactions.spellCastGrip;
-			fb.asc = this;
+			//fb.asc = this;
 		}
 	}
 
@@ -322,7 +327,7 @@ public class activateSpellcating : MonoBehaviour
 		{
 			spellObject = Instantiate(spellPrefab.LightingPrefab);
 			Lighting light = spellObject.GetComponent<Lighting>();
-			light.asc = this;
+			//light.asc = this;
 			light.loc = SpellStartPoint;
 			light.handGrip = interactions.spellCastGrip;
 			light.handPosition = gameObject;
@@ -337,7 +342,7 @@ public class activateSpellcating : MonoBehaviour
 			Wind wind = spellObject.GetComponent<Wind>();
 			wind.handGrip = interactions.spellCastGrip;
 			wind.handObject = gameObject;
-			wind.asc = this;
+			//wind.asc = this;
 		}
 	}
 
