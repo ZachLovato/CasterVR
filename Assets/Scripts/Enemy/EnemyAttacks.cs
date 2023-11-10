@@ -125,36 +125,19 @@ public class EnemyAttacks : MonoBehaviour
 		//int spell = Random.Range(0, 4 - 1);
 		int spell = 0;
 
-		print("Casting Spell");
-
-		GameObject go;
-
 		switch (spell)
 		{
 			case 0:
 				// spawns an npc type Fireball
-				go = Instantiate(fireSpell);
-				go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.Fireball;
-				go.transform.rotation = transform.rotation;
-				go.transform.position = attackPosition[0].transform.position;
-				print("Casting fireSpell");
+				enemyController.changeAnimaiton(2, "IceWall");
 				break;
 			case 1:
 				// spawns an npc type WAll
-				go = Instantiate(iceSpell);
-				go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.IceWall;
-				go.transform.rotation = transform.rotation;
-				go.transform.position = attackPosition[1].transform.position;
-				print("Casting iceSpell");
+				enemyController.changeAnimaiton(2, "Fireball");
 				break;
 			case 2:
 				// Lighting wave
-				go = Instantiate(lightingSpell);
-				go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.ShockWave;
-				go.transform.rotation = transform.rotation;
-				go.transform.position = attackPosition[2].transform.position;
-				print("Casting lightingSpell");
-
+				enemyController.changeAnimaiton(2, "Lightning");
 				break;
 			case 3:
 				// Wind
@@ -194,4 +177,32 @@ public class EnemyAttacks : MonoBehaviour
 		dir = transform.position + (dir * Random.Range(minRadius, maxRadius));
 		return dir;
 	}
+
+	#region spells
+
+	public void castWall()
+	{
+		GameObject go = Instantiate(iceSpell);
+		go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.IceWall;
+		go.transform.rotation = transform.rotation;
+		go.transform.position = attackPosition[1].transform.position;
+	}
+	public void castFire()
+	{
+		GameObject go = Instantiate(fireSpell);
+		go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.Fireball;
+		go.transform.rotation = transform.rotation;
+		go.transform.position = attackPosition[0].transform.position;
+	}
+	public void castLightning()
+	{
+		GameObject go = Instantiate(lightingSpell);
+		go.GetComponent<EnemyAttackItems>().type = EnemyAttackItems.ATK_TYPE.ShockWave;
+		go.transform.rotation = transform.rotation;
+		go.transform.position = attackPosition[2].transform.position;
+	}
+
+	#endregion
+
+
 }

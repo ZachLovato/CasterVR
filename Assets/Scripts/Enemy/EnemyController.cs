@@ -9,6 +9,9 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] bool isdummy = false;
     private float timer = 0;
+
+    [SerializeField] Animator animator;
+
     enum STATE
     {
         
@@ -238,7 +241,33 @@ public class EnemyController : MonoBehaviour
     private void AttackState()
     {
         attack.enabled = true;
+        animator.SetBool("InCombat", true);
         if (pos != null) agent.SetDestination(pos);
+    }
+
+
+	#endregion
+
+	#region Animation
+
+    public void changeAnimaiton(int type, string name, float value = 0)
+    {
+        if (animator is null) return;
+
+        switch (type)
+        {
+            case 0:
+                bool tempB = (value < 1);
+                animator.SetBool(name, tempB);
+                break;
+            case 1:
+                animator.SetFloat(name, value);
+                break;
+            case 2:
+                animator.SetTrigger(name);
+                break;
+        }
+        
     }
 
 
