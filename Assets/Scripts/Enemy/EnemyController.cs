@@ -72,6 +72,8 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         attack = GetComponent<EnemyAttacks>();
         attack.enabled = false;
+
+        transform.position += Vector3.up * -1;
     }
 
     // Update is called once per frame
@@ -95,6 +97,8 @@ public class EnemyController : MonoBehaviour
 
 
         printDebug("Current State:" + state);
+
+        animator.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
     }
 
 	#region Helper Functions
@@ -151,6 +155,10 @@ public class EnemyController : MonoBehaviour
         return Random.Range(0, patrolCount);
     }
 
+    public void stopResumeAgent()
+    {
+        agent.isStopped = !agent.isStopped;
+    }
     
 	#endregion
 
@@ -273,7 +281,6 @@ public class EnemyController : MonoBehaviour
 
 	#endregion
 
-
 	#region Debug
 	private void OnDrawGizmos()
 	{
@@ -287,10 +294,12 @@ public class EnemyController : MonoBehaviour
 		}
         
 	}
-	#endregion
 
 	private void printDebug(string msg)
-    {
-        //if (isDegugging) { Debug.Log(msg); }
-    }
+	{
+		//if (isDegugging) { Debug.Log(msg); }
+	}
+	#endregion
+
+
 }

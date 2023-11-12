@@ -57,10 +57,24 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: stopResumeAgent
+        data: 
+        objectReferenceParameter: {fileID: 7598580560181884973, guid: 86b5d94ad36489e48b8f9fd2d0ce6960, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.28909957
         functionName: castWall
         data: 
-        objectReferenceParameter: {fileID: 3344625566807427997, guid: fadb21a28dc0bb44a8e5809e13eaec07, type: 3}
+        objectReferenceParameter: {fileID: 7598580560181884973, guid: 86b5d94ad36489e48b8f9fd2d0ce6960, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.99526066
+        functionName: stopResumeAgent
+        data: 
+        objectReferenceParameter: {fileID: 7598580560181884973, guid: 86b5d94ad36489e48b8f9fd2d0ce6960, type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

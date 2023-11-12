@@ -94,7 +94,10 @@ public class EnemyAttacks : MonoBehaviour
 			enemyController.setNewTargetPosition(player.transform.position);
 		}
 
-		Quaternion targetRotation = Quaternion.LookRotation(player.transform.position - transform.position);
+		Vector3 playerPos = player.transform.position;
+		playerPos.y = transform.position.y;
+
+		Quaternion targetRotation = Quaternion.LookRotation(playerPos - transform.position);
 		float str = Mathf.Min(25 * Time.deltaTime, 1);
 		transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, str);
 

@@ -27,7 +27,7 @@ public class EnemyVision : MonoBehaviour
 		float angle = angleWidth / castAmount;
 		float currAngle = -(angleWidth * 0.5f);
 		Ray drawRay;
-		Vector3 look = transform.parent.transform.forward;
+		Vector3 look = transform.forward;
 
 		for (int i = 0; i <= castAmount; i++)
 		{

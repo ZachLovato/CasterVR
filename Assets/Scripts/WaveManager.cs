@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
@@ -9,15 +10,20 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<GameObject> AliveHostiles;
 
     private float maxAliveCount = 1;
-    private float enemyInWaves = 6;
+    private float enemyInWaves = 2;
     private float waveCount = 0;
 
     public delegate void removeHostile(GameObject hostile);
     public static removeHostile onRemoveHostile;
 
+    [SerializeField] private float waveDelay = 5;
+    [SerializeField] private float timer = 0;
+
 	private void Start()
 	{
         onRemoveHostile += removeDeadHostile;
+        spawnHostile(0);
+        timer = waveDelay;
 	}
 
 	// Update is called once per frame
@@ -25,26 +31,23 @@ public class WaveManager : MonoBehaviour
     {
         // if the amount of enemies that have been killed has reached 0 
         // change to the next wave
-        if (enemyInWaves <= 0 && AliveHostiles.Count == 0)
-        {
-            waveCount++;
-            changeRoundCount();
-        }
 
+
+        round();
 
     }
 
     private void removeDeadHostile(GameObject hostile)
     {
         AliveHostiles.Remove(hostile);
-        createHostiles();
-    }
+        if (checkEndRound()) createHostiles();
+	}
 
     // fills to number of max alive hostiles
     private void createHostiles()
     {
-        while (AliveHostiles.Count -1 < maxAliveCount)
-        {
+		while (AliveHostiles.Count - 1 < maxAliveCount)
+		{
 			spawnHostile(0);
 			enemyInWaves--;
 		}
@@ -85,13 +88,28 @@ public class WaveManager : MonoBehaviour
     {
         int spawnpoint = Random.Range(0, SpawnPoints.Length);
 
-        AliveHostiles.Add(Instantiate(SpawnableHostiles[prefabNum]));
-
-        int newHostileNum = AliveHostiles.Count - 1;
-
-        AliveHostiles[newHostileNum].transform.position = SpawnPoints[spawnpoint].transform.position;
-
+        AliveHostiles.Add(Instantiate(SpawnableHostiles[prefabNum], SpawnPoints[spawnpoint].transform.position, transform.rotation));
     }
 
+    private void round()
+    {
+		if (enemyInWaves <= 0 && AliveHostiles.Count == 0)
+		{
+			if (timer <= 0)
+			{
+				waveCount++;
+				changeRoundCount();
+				timer = waveDelay;
+			}
+			else timer -= Time.deltaTime;
+		}
+	}
+
+    private bool checkEndRound()
+    {
+        //if ()
+
+        return false;
+    }
 
 }
