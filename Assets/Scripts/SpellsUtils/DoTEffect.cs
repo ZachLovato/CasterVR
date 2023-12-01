@@ -39,8 +39,8 @@ public class DoTEffect : MonoBehaviour
 
         if (tick >= framePerDamageTick)
         {
-            health.AddHealth(-damage);
-            print("Damage done");
+            health.AddHealth(-damage, true);
+            //print("Damage done");
             tick = 0;
         }
 	}

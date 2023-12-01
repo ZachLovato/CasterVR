@@ -29,12 +29,12 @@ public class SpellCastUI : MonoBehaviour
                 Vector2 pos = Vector2.zero;
                 pos.x = tracer.transform.localPosition.x;
                 pos.y = tracer.transform.localPosition.y;
-                pos /= 2.1f;
 
                 if (lastPos != pos) 
                 {
+					//positions.Add(pos * 0.1f);
 					positions.Add(pos);
-                    addPosition(tracer.transform.position);
+                    addPosition(pos);
 					lastPos = pos;
                 }
             }

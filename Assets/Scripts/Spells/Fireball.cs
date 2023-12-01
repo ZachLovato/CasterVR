@@ -47,12 +47,15 @@ public class Fireball : MonoBehaviour
 	[SerializeField] GameObject[] fireParticles;
 
 	[HideInInspector] public InputActionProperty spellCastGrip;
+	[HideInInspector] public GameObject userHand;
 
 	//[HideInInspector] public activateSpellcating asc;
 
 	private Vector3 prevPos;
 	[SerializeField] private GameObject prevObj;
 	bool doOnce = true;
+
+	private bool destorySelf = false;
 
 	// Start is called before the first frame update
 	void Start()
@@ -69,7 +72,11 @@ public class Fireball : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+		if (destorySelf)
+		{
+			Destroy(gameObject);
+			return;
+		}
 		switch (state)
 		{
 			case FireballState.SPAWNING:
@@ -86,7 +93,9 @@ public class Fireball : MonoBehaviour
 				isGravOn();
 				if (doOnce)
 				{
-					rb.AddForce(Vector3.Normalize(transform.position - prevPos), ForceMode.Impulse);
+					Vector3 temp = transform.position - userHand.transform.position;
+					temp = temp.normalized;
+					rb.AddForce(temp, ForceMode.Impulse);
 					//asc.ResetFirstSpell();
 					activateSpellcating.onCastReset();
 					doOnce = false;
@@ -99,14 +108,18 @@ public class Fireball : MonoBehaviour
 
 					// activate Particles
 					Destroy(fireParticles[0]);
+					Destroy(gameObject.transform.GetChild(0).gameObject);
+
 					fireParticles[1].SetActive(true);
 				}
-				transform.LookAt(((transform.position - prevPos).normalized * 2) + transform.position);
+				transform.LookAt(((transform.position - userHand.transform.position).normalized * 2) + transform.position);
 
 				break;
 		}
 
-		prevPos = transform.position;
+		//print(prevPos + " " + transform.position);
+		prevObj.transform.position = prevPos;
+		prevPos = userHand.transform.position;
 	}
 
 	private void isGravOn()
@@ -133,7 +146,9 @@ public class Fireball : MonoBehaviour
 		go.transform.rotation = other.rotation;
 		go.transform.localScale = new Vector3(radius, 1, radius);
 
-		transform.DetachChildren();
+		go.transform.parent = null;
+
+		//transform.DetachChildren();
 	}
 
 	private void spawnAoE(Vector3 pos, Quaternion rot)
@@ -153,6 +168,9 @@ public class Fireball : MonoBehaviour
 	{
 		if (state != FireballState.FLYING) return;
 
+		fireParticles[3] = Instantiate(fireParticles[3]);
+		fireParticles[3].transform.position = transform.position;
+
 
 		// this checks if the fireball hits the wall layer
 		if (collision.gameObject.layer == 31)
@@ -165,11 +183,11 @@ public class Fireball : MonoBehaviour
 		else if (collision.gameObject.tag == "Hostile")
 		{
 			collision.gameObject.GetComponent<Health>().AddHealth(-DDamage);
-			dt.useTimer = false;
-			
 		}
 
-		Destroy(this.gameObject);
+		//Destroy(gameObject.transform.GetChild(0).gameObject);
+		//Destroy(gameObject.transform.GetChild(0).gameObject);
+		destorySelf = true;
 	}
 
 }

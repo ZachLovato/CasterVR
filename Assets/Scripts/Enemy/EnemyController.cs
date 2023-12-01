@@ -56,17 +56,22 @@ public class EnemyController : MonoBehaviour
 	[SerializeField] private EnemyAttacks attack;
     private GameObject playerObject;
 
+    [SerializeField] PlayRandomAudio[] audioRand;
+
+	#region Debug
+
 	[Space, SerializeField] bool isDegugging = false;
 	[SerializeField] bool isDrawingGizmo = false;
 
     private bool doOnce = true;
     private Vector3 pos;
 
-
     public bool isDisable = false;
 
-    // Start is called before the first frame update
-    void Start()
+	#endregion
+
+	// Start is called before the first frame update
+	void Start()
     {
         state = STATE.IDLE;
         agent = GetComponent<NavMeshAgent>();
@@ -159,7 +164,19 @@ public class EnemyController : MonoBehaviour
     {
         agent.isStopped = !agent.isStopped;
     }
-    
+
+    public void resetAnimation()
+    {
+        stopResumeAgent();
+		animator.SetFloat("DamageAni", 0);
+	}
+
+    public void setDeath()
+    {
+        animator.enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+    }
+
 	#endregion
 
 	#region states
@@ -278,6 +295,26 @@ public class EnemyController : MonoBehaviour
         
     }
 
+    public void damageTaken(bool isDoT)
+    {
+        if (isDoT) return;
+
+        int damageAnimation = Random.Range(0, 4);
+
+        stopResumeAgent();
+        animator.SetInteger("DamageAnim", damageAnimation);
+        animator.SetTrigger("TakenDD");
+    }
+
+    public void playVoiceSound(int type)
+    {
+        switch (type)
+        {
+            case 0: audioRand[0].playRandAudio(); break;
+            case 1: audioRand[1].playRandAudio(); break;
+            case 2: audioRand[2].playRandAudio(); break;
+        }
+    }
 
 	#endregion
 

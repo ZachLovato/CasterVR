@@ -52,6 +52,8 @@ public class activateSpellcating : MonoBehaviour
 	private bool prevHeld;
 
 	[SerializeField] CustomSpell customSpell;
+	[SerializeField] private animateHandOnInput handAni;
+	[SerializeField] private GameObject wand;
 
 	public delegate void ResetCasting();
 	public static ResetCasting onCastReset;
@@ -78,7 +80,9 @@ public class activateSpellcating : MonoBehaviour
 		switch (state)
 		{
 			case CastingState.SPELL:
-				print(castResult.Score);
+				//print(castResult.Score);
+				wand.SetActive(true);
+				handAni.state = animateHandOnInput.STATES.CASTING;
 				switch (castResult.Match.Name)
 				{
 					case "IceSP":
@@ -109,12 +113,14 @@ public class activateSpellcating : MonoBehaviour
 
 				break;
 			case CastingState.CASTING:
+				handAni.state = animateHandOnInput.STATES.CASTING;
 
 				if (!isFirstCast)
 				{
 					isFirstCast = true;
 					hitObj.SetActive(true);
 				}
+				wand.SetActive(true);
 				
 				setSpellBoard();
 				SpellBoard();
@@ -123,7 +129,7 @@ public class activateSpellcating : MonoBehaviour
 				
 				break;
 			case CastingState.RECORDING:
-				
+				wand.SetActive(true);
 				if (interactions.spellCastTrigger.action.ReadValue<float>() == 1)
 				{
 					setSpellBoard();
@@ -138,7 +144,7 @@ public class activateSpellcating : MonoBehaviour
 				
 				break;
 			case CastingState.RECORDED:
-				Debug.Log("Recorded");
+				//Debug.Log("Recorded");
 				
 				isRecordingSpell = false;
 
@@ -152,6 +158,9 @@ public class activateSpellcating : MonoBehaviour
 				if (spellBoard.activeSelf) spellBoard.SetActive(false);
 				CallNClear();
 
+
+				handAni.state = animateHandOnInput.STATES.DEFAULT;
+				
 				// return to normal state
 
 				if (state == CastingState.CLEARING) state = CastingState.NORMAL;
@@ -170,8 +179,19 @@ public class activateSpellcating : MonoBehaviour
 				{
 					if (currHeld && isRecordingSpell) state = CastingState.RECORDING;
 					else if (currHeld) state = CastingState.CASTING;
+					handAni.state = animateHandOnInput.STATES.DEFAULT;
 				}
-
+				else
+				{
+					
+					if (hit.transform.gameObject.active)
+					{
+						//print(hit.transform.name);
+						handAni.state = animateHandOnInput.STATES.UI;
+					}
+				}
+				wand.SetActive(false);
+				
 				break;
 			default:
 				break;
@@ -217,6 +237,7 @@ public class activateSpellcating : MonoBehaviour
 		if (spellCastUI.trackPosition)
 		{
 			castResult = spellCastUI.callDoller();
+			if (castResult.Match == null) return;
 			spellCastUI.trackPosition = false;
 			spellCastUI.ClearPositions();
 
@@ -302,6 +323,8 @@ public class activateSpellcating : MonoBehaviour
 		//wallCom.asc = this;
         isFirstCast = false;
 
+		wallCom.WandOffset = SpellStartPoint.transform.position;
+
 		//wall.transform.rotation = Quaternion.LookRotation(Vector3.Cross(wall.transform.right, hit.normal), hit.normal);
 		wall.transform.rotation = Quaternion.FromToRotation(hit.transform.up, hit.normal);// * transform.rotation;
 		wallCom.upRotation = wall.transform.rotation;
@@ -317,6 +340,7 @@ public class activateSpellcating : MonoBehaviour
 			Fireball fb = spellObject.GetComponent<Fireball>();
 			fb.holdPos = SpellStartPoint;
 			fb.spellCastGrip = interactions.spellCastGrip;
+			fb.userHand = gameObject;
 			//fb.asc = this;
 		}
 	}
@@ -340,8 +364,10 @@ public class activateSpellcating : MonoBehaviour
 		{
 			spellObject = Instantiate(spellPrefab.WindPrefab);
 			Wind wind = spellObject.GetComponent<Wind>();
+			spellObject.transform.position = SpellStartPoint.transform.position;
 			wind.handGrip = interactions.spellCastGrip;
 			wind.handObject = gameObject;
+			wind.spellHoldPos = SpellStartPoint.transform;
 			//wind.asc = this;
 		}
 	}

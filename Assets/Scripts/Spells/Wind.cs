@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class Wind : MonoBehaviour
 	[HideInInspector] public InputActionProperty handGrip;
 
 	[HideInInspector] public GameObject handObject;
-	//[HideInInspector] public activateSpellcating asc;
+	[HideInInspector] public Transform spellHoldPos;
 	private GameObject initalCastLocation;
 
 	bool didLetGoGrip = false;
@@ -25,14 +26,18 @@ public class Wind : MonoBehaviour
 
 	[SerializeField] float damage;
 	[SerializeField] GameObject[] WindParticlePrefab;
+	[SerializeField] GameObject castObj;
 
 	[SerializeField] LayerMask floor;
 
-	private void Awake()
+	[SerializeField] AudioClip[] clips;
+	private AudioSource AudioS;
+
+	private void Start()
 	{
+		AudioS = GetComponent<AudioSource>();
 	}
 
-	// Update is called once per frame
 	void Update()
     {
 		bool grip = handGrip.action.inProgress;
@@ -43,8 +48,9 @@ public class Wind : MonoBehaviour
 			if (firstHeldFrame)
 			{
 				initalCastLocation = new GameObject();
+				castObj = initalCastLocation;
 				initalCastLocation.transform.parent = Camera.main.transform;
-				initalCastLocation.transform.position = handObject.transform.position;
+				initalCastLocation.transform.position = transform.position;
 				firstHeldFrame = false;
 			}
 
@@ -58,7 +64,11 @@ public class Wind : MonoBehaviour
 			{
 				case 0:
 					//cast buff
-					debugPrint("Casted a Buff");
+					//debugPrint("Casted a Buff");
+
+					castBuff();
+					AudioS.clip = clips[0];
+					AudioS.loop = true;
 					WindParticlePrefab[1] = Instantiate(WindParticlePrefab[1]);
 					WindParticlePrefab[1].transform.parent = Camera.main.transform.parent.transform;
 					if (Physics.Raycast(Camera.main.transform.position, -Vector3.up, out RaycastHit hit, 4, floor))
@@ -69,8 +79,9 @@ public class Wind : MonoBehaviour
 					break;
 				case 1:
 					//cast attack
-					debugPrint("Casted an Attack");
+					//debugPrint("Casted an Attack");
 					attack();
+					AudioS.clip = clips[1];
 					WindParticlePrefab[0] = Instantiate(WindParticlePrefab[0]);
 					WindParticlePrefab[0].transform.rotation = Camera.main.transform.rotation;
 					WindParticlePrefab[0].transform.position = transform.position;
@@ -85,7 +96,8 @@ public class Wind : MonoBehaviour
 
 		}
 
-		transform.position = handObject.transform.position;
+		//transform.position = handObject.transform.position;
+		transform.position = spellHoldPos.position;
     }
 
 	private int calculateDistance()
@@ -98,8 +110,8 @@ public class Wind : MonoBehaviour
 		center.y = Camera.main.transform.position.z;
 
 		Vector2 handPosition = Vector2.zero;
-		handPosition.x = handObject.transform.position.x;
-		handPosition.y = handObject.transform.position.z;
+		handPosition.x = transform.position.x;
+		handPosition.y = transform.position.z;
 
 		Vector2 castPosition = Vector2.zero;
 		castPosition.x = initalCastLocation.transform.position.x;
@@ -154,8 +166,23 @@ public class Wind : MonoBehaviour
 		if (hostile.TryGetComponent(out Health health))
 		{
 			health.AddHealth(-damage);
+
+			if (health.isObjectDead())
+			{
+				hostile.GetComponent<EnemyController>().setDeath();
+			}
 		}
+
+		if (hostile.TryGetComponent<Rigidbody>(out Rigidbody rb))
+		{
+			Vector3 vel = hostile.transform.position - transform.position;
+			vel = vel.normalized;
+			rb.AddForce(vel * 300, ForceMode.VelocityChange);
+		}
+
 	}
+
+
 
 	private void debugPrint(string output)
 	{

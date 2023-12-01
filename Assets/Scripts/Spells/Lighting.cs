@@ -85,6 +85,8 @@ public class Lighting : MonoBehaviour
 
             go.transform.SetParent(Camera.main.transform);
             go.transform.localPosition = Vector3.zero;
+            Vector3 scale = Vector3.one * 5.1f;
+            go.transform.localScale = scale;
 
 			activateSpellcating.onCastReset();
 			//asc.ResetFirstSpell();

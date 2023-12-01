@@ -10,7 +10,7 @@ public class TestScript : MonoBehaviour
     [SerializeField] float distance;
     [SerializeField] float angle;
 
-    [SerializeField] bool isAngleLessThen45 = false;
+    //[SerializeField] bool isAngleLessThen45 = false;
 
 
 	// Start is called before the first frame update
@@ -38,7 +38,7 @@ public class TestScript : MonoBehaviour
 
 		if (angle <= 45)
 		{
-			isAngleLessThen45 = true;
+			//isAngleLessThen45 = true;
 		}
 	}
 }

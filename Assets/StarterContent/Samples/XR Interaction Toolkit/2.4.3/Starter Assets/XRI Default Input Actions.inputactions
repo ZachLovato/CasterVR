@@ -421,6 +421,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Abtn",
+                    "type": "Button",
+                    "id": "c57cb483-a971-4cd6-8238-5b3eef6dba69",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -652,6 +661,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Secondary Button",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e523a02-dbf0-4727-ad47-771db804df96",
+                    "path": "<XRController>{RightHand}/menuButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Abtn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

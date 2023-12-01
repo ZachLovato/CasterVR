@@ -35,11 +35,12 @@ public class LightingAttacks : MonoBehaviour
 				if (isFirstPass)
 				{
 					transform.SetParent(Camera.main.transform);
-					CapsuleCollider cc = GetComponent<CapsuleCollider>();
+					SphereCollider sc = GetComponent<SphereCollider>();
 					isFirstPass = false;
-					cc.radius = 11;
+					sc.radius = 11;
 
 					auraParticle = Instantiate(auraParticle, transform);
+					auraParticle.transform.localPosition = Vector3.zero;
 					ParticleSystem ps = auraParticle.GetComponent<ParticleSystem>();
 					ps.Play();
 
@@ -80,7 +81,7 @@ public class LightingAttacks : MonoBehaviour
 			case ATTACKSTATE.Wave:
 				if (other.gameObject.TryGetComponent(out Health health) && other.gameObject.tag == "Hostile")
 				{
-					health.AddHealth(-10);
+					health.AddHealth(-40);
 				}
 				else printDebug(other.gameObject.name + " is not a Hostile");
 				break;
@@ -89,7 +90,7 @@ public class LightingAttacks : MonoBehaviour
 				if (other.gameObject.tag == "Hostile")
 				{
 					DoTEffect dot = other.AddComponent<DoTEffect>();
-					dot.setStats(10, 5, 2);
+					dot.setStats(10, 5, 5);
 					dot.startDoTTimer = true;
 					printDebug("Hostile found and killing");
 				}

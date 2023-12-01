@@ -7,6 +7,7 @@ public class Wall : MonoBehaviour
 {
 	[HideInInspector] public GameObject pointerPosition;
 	[HideInInspector] public InputActionProperty handGrip;
+	[HideInInspector] public Vector3 WandOffset;
 
 	[HideInInspector] public Vector3 startPoint;
 	[HideInInspector] public GameObject castPoint;
@@ -17,6 +18,8 @@ public class Wall : MonoBehaviour
     [SerializeField] Transform continuesParticle;
     [SerializeField] GameObject oneTimeParticle;
     [SerializeField] Transform particlePos;
+
+    [SerializeField] private GameObject wandTipParticle;
 
     private bool isScriptDone = false;
 
@@ -36,6 +39,8 @@ public class Wall : MonoBehaviour
 
         castPoint = new GameObject();
         castPoint.transform.SetParent(Camera.main.transform);
+
+        wandTipParticle = Instantiate(wandTipParticle, pointerPosition.transform);
 
         if (debuging) print(startPoint);
 	}
@@ -86,6 +91,8 @@ public class Wall : MonoBehaviour
             }
 
             GameManager.onRebakeNaveMesh();
+
+            Destroy(wandTipParticle);
             
 		}
 		

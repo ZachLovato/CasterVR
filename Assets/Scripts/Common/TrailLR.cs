@@ -9,7 +9,7 @@ public class TrailLR : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        lr = GetComponent<LineRenderer>();
+        if (lr == null) lr = GetComponent<LineRenderer>();
         lr.positionCount = 0;
     }
 

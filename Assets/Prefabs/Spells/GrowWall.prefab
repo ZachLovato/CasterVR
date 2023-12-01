@@ -163,9 +163,14 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
+  WandOffset: {x: 0, y: 0, z: 0}
   startPoint: {x: 0, y: 0, z: 0}
+  castPoint: {fileID: 0}
   scaleSpeed: 3
   debuging: 0
-  asc: {fileID: 0}
+  continuesParticle: {fileID: 0}
+  oneTimeParticle: {fileID: 0}
+  particlePos: {fileID: 0}
+  wandTipParticle: {fileID: 2218908122821842558, guid: 4230e518d40c8ed478cc53568b3a7036, type: 3}
   normal: {x: 0, y: 0, z: 0}
   upRotation: {x: 0, y: 0, z: 0, w: 0}

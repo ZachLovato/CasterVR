@@ -13,11 +13,16 @@ public class Health : MonoBehaviour
     [SerializeField, Range(0,20)] private float DestroyDelay = 0;
     private float destroyTimer = 0;
 
+    private EnemyController enemyController;
+    private EnemyAttacker enemyAttacker;
+
     // Start is called before the first frame update
     void Start()
     {
 		destroyTimer = DestroyDelay;
         HP = MaxHP;
+        if (isNonPlayer) enemyController = GetComponent<EnemyController>();
+        if (isNonPlayer) enemyAttacker = GetComponent<EnemyAttacker>();
     }
 
     // Update is called once per frame
@@ -38,7 +43,9 @@ public class Health : MonoBehaviour
             {
                 gameObject.AddComponent<DestoryTimer>().DestoryDelay = destroyTimer;
             }
-        }
+            else destroyTimer -= Time.deltaTime;
+
+		}
     }
 
 
@@ -46,10 +53,20 @@ public class Health : MonoBehaviour
 
     public float getHealth() { return HP; }
 
-    public void AddHealth(float hpChange)
+    public void AddHealth(float hpChange, bool isDoT = false)
     {
         HP += hpChange;
+
+        if (isNonPlayer)
+        {
+            if (enemyController == null) enemyController = GetComponent<EnemyController>();
+            if (enemyController == null) enemyAttacker = GetComponent<EnemyAttacker>();
+			if (enemyController != null) enemyController.damageTaken(isDoT);
+			if (enemyController != null) enemyAttacker.DamageTaken();
+		}
     }
+
+    public bool isObjectDead() { return isDead; }
 
 
 

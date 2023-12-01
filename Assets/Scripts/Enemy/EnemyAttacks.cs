@@ -50,7 +50,7 @@ public class EnemyAttacks : MonoBehaviour
 	// Update is called once per frame
     void Update()
     {
-		print(state);
+		//print(state);
 
 		switch (state)
 		{
@@ -104,7 +104,7 @@ public class EnemyAttacks : MonoBehaviour
 
 		if (timer >= circleTimer)
 		{
-			switch (Random.Range(0, 2))
+			switch (Random.Range(0, 3))
 			{
 				case 0:
 					state = ATTCKING_STATE.SpellShot; break;
@@ -113,7 +113,7 @@ public class EnemyAttacks : MonoBehaviour
 			}
 			timer = 0;
 			circlePosition = nullPoint;
-			print("Changing State, " + state);
+			//print("Changing State, " + state);
 		}
 		else
 		{
@@ -125,8 +125,8 @@ public class EnemyAttacks : MonoBehaviour
 	// randomly picks one of the spells to use
 	private void SpellShot()
 	{
-		//int spell = Random.Range(0, 4 - 1);
-		int spell = 0;
+		int spell = Random.Range(0, 4 - 1);
+		//int spell = 0;
 
 		switch (spell)
 		{
@@ -136,7 +136,7 @@ public class EnemyAttacks : MonoBehaviour
 				break;
 			case 1:
 				// spawns an npc type WAll
-				enemyController.changeAnimaiton(2, "Fireball");
+				enemyController.changeAnimaiton(2, "FireBall");
 				break;
 			case 2:
 				// Lighting wave
@@ -154,7 +154,7 @@ public class EnemyAttacks : MonoBehaviour
 	// melee
 	private void Slap()
 	{
-		print("Going in for a slap");
+		//print("Going in for a slap");
 		if (Vector3.Distance(transform.position, player.transform.position) < meleeRange)
 		{
 			// attack the player

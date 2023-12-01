@@ -64,7 +64,7 @@ public class EnemyAttackItems : MonoBehaviour
 			}
             else if (other.gameObject.tag != "Floor")
             {
-				print("Hit " + other.name);
+				//print("Hit " + other.name);
 				Destroy(gameObject);
 			}
 			

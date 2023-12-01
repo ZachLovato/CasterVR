@@ -10,10 +10,15 @@ public class CustomSpell : MonoBehaviour
     [SerializeField] private TextMeshProUGUI spellName;
     [SerializeField] DollerHolder dh;
     [SerializeField] activateSpellcating spellCaster;
+    [SerializeField] private float scaler = 1;
 
     private DollarRecognizer dr;
 
     private int spellIndex = 0;
+
+    [SerializeField] private bool useLineR;
+    [SerializeField] private LineRenderer lr;
+    [SerializeField] private SpellCords[] scr;
 
     [Space, Header("Debugging")]
     [SerializeField] private bool isDebugging = false;
@@ -21,6 +26,7 @@ public class CustomSpell : MonoBehaviour
 	private void Awake()
 	{
 		dr = dh.GetRecognizer();
+        //if (useLineR) lr = GetComponent<LineRenderer>();
 	}
 
 	// Update is called once per frame
@@ -34,6 +40,7 @@ public class CustomSpell : MonoBehaviour
 			if (stroke != null)
 			{
 				spellName.text = stroke.Name;
+                if (useLineR) useLineRend(stroke);
                 if (isDebugging) print(stroke.Name);
 			}
 		}
@@ -43,6 +50,22 @@ public class CustomSpell : MonoBehaviour
 		}
 
         
+    }
+
+    private void useLineRend(Unistroke stroke)
+    {
+        for (int i = 0;  i < scr.Length; i++)
+        {
+            if (stroke.Name == scr[i].SpellName)
+            {
+                lr.positionCount = scr[i].cords.Count;
+                for (int j = 0; j < scr[i].cords.Count; j++)
+                {
+                    lr.SetPosition(j, scr[i].cords[j]);
+				}
+                return;
+            }
+        }
     }
 
     public void nextSpell()

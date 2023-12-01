@@ -53,21 +53,21 @@ public class EnemyVision : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		if (isdebugging)
-		{
-			Gizmos.color = Color.cyan;
-			float angle = angleWidth / castAmount;
-			float currAngle = -(angleWidth * 0.5f);
-			Ray drawRay;
-			Vector3 look = transform.parent.transform.forward;
+		//if (isdebugging)
+		//{
+		//	Gizmos.color = Color.cyan;
+		//	float angle = angleWidth / castAmount;
+		//	float currAngle = -(angleWidth * 0.5f);
+		//	Ray drawRay;
+		//	Vector3 look = transform.parent.transform.forward;
 
-			for (int i = 0; i <= castAmount; i++)
-			{
-				drawRay = new Ray(transform.position, Quaternion.Euler(0, currAngle, 0) * look);
-				currAngle += angle;
-				Gizmos.DrawRay(drawRay.origin, drawRay.direction * sightRange);
-				Gizmos.DrawWireSphere(drawRay.GetPoint(sightRange), radius);
-			}
-		}
+		//	for (int i = 0; i <= castAmount; i++)
+		//	{
+		//		drawRay = new Ray(transform.position, Quaternion.Euler(0, currAngle, 0) * look);
+		//		currAngle += angle;
+		//		Gizmos.DrawRay(drawRay.origin, drawRay.direction * sightRange);
+		//		Gizmos.DrawWireSphere(drawRay.GetPoint(sightRange), radius);
+		//	}
+		//}
 	}
 }

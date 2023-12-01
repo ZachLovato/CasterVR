@@ -14,7 +14,6 @@ public class DollerHolder : MonoBehaviour
 	[Space, Header("Debugging")]
 	[SerializeField] private bool isDebuging = false;
 
-	// Start is called before the first frame update
 	void Start()
     {
         _recognizer = new DollarRecognizer();
@@ -30,6 +29,11 @@ public class DollerHolder : MonoBehaviour
 			debugPrint("DollarRecognizer Failed to CREATE");
 		}
 	}
+
+	private void Update()
+	{
+        
+    }
 
 	public DollarRecognizer GetRecognizer() 
 	{ 
@@ -59,6 +63,8 @@ public class DollerHolder : MonoBehaviour
 
 	public Result callDoller(List<Vector2> positions)
 	{
+		if (positions.Count < 5) return new Result();
+		
 		Result r = _recognizer.Recognize(positions);
 
 		debugPrint("1$ has found a Match: " + r.Match.Name + "\nScore: " + r.Score);
