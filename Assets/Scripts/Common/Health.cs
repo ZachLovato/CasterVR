@@ -15,14 +15,18 @@ public class Health : MonoBehaviour
 
     private EnemyController enemyController;
     private EnemyAttacker enemyAttacker;
+    public bool isBotOne = true;
 
     // Start is called before the first frame update
     void Start()
     {
 		destroyTimer = DestroyDelay;
         HP = MaxHP;
-        if (isNonPlayer) enemyController = GetComponent<EnemyController>();
-        if (isNonPlayer) enemyAttacker = GetComponent<EnemyAttacker>();
+        if (isBotOne )
+        {
+			if (isNonPlayer) enemyController = GetComponent<EnemyController>();
+		}
+        else if (isNonPlayer) enemyAttacker = GetComponent<EnemyAttacker>();
     }
 
     // Update is called once per frame
@@ -59,10 +63,18 @@ public class Health : MonoBehaviour
 
         if (isNonPlayer)
         {
-            if (enemyController == null) enemyController = GetComponent<EnemyController>();
-            if (enemyController == null) enemyAttacker = GetComponent<EnemyAttacker>();
-			if (enemyController != null) enemyController.damageTaken(isDoT);
-			if (enemyController != null) enemyAttacker.DamageTaken();
+            if (isBotOne)
+            {
+				if (enemyController == null) enemyController = GetComponent<EnemyController>();
+				if (enemyController != null) enemyController.damageTaken(isDoT);
+			}
+            else
+            {
+				if (enemyController == null) enemyAttacker = GetComponent<EnemyAttacker>();
+				if (enemyController != null) enemyAttacker.DamageTaken();
+			}
+            
+            
 		}
     }
 
