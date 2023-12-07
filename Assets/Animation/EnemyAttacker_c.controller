@@ -9,10 +9,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: 2
   - m_ConditionMode: 4
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5916347794168098721}
@@ -84,10 +84,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: 1
   - m_ConditionMode: 4
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 418346583183815906}
@@ -112,10 +112,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: -1
   - m_ConditionMode: 4
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3428956458204024312}
@@ -353,36 +353,36 @@ AnimatorController:
   m_Name: EnemyAttacker_c
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: DamageAnim
+  - m_Name: DamageTake
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: -1
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Ice
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Fire
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Lightning
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -559,10 +559,10 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: 0
   - m_ConditionMode: 4
-    m_ConditionEvent: DamageAnim
+    m_ConditionEvent: DamageTake
     m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3809340410459500196}

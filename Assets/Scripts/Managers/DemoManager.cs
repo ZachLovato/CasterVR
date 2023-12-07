@@ -37,7 +37,7 @@ public class DemoManager : MonoBehaviour
 		for (int i = 0; i < spawnCount; i++)
 		{
 			GameObject temp = Instantiate(Ememy);
-			temp.transform.position = spawnPoints[0].transform.position;
+			temp.transform.position = spawnPoints[i % spawnPoints.Length].transform.position;
 		}
 	}
 

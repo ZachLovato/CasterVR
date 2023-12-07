@@ -172,8 +172,8 @@ public class EnemyAttacker : MonoBehaviour
 
     private void startSpellAttack()
     {
-        //int spellId = Random.Range(0, spellPositions.Length);
-        int spellId = 2;
+        int spellId = Random.Range(0, spellPositions.Length);
+        //int spellId = 2;
 
         switch (spellId)
         {
@@ -216,8 +216,15 @@ public class EnemyAttacker : MonoBehaviour
     {
         int damageAni = Random.Range(0, 3);
 
-        animator.SetFloat("DamageAnim", damageAni);
+        //animator.SetFloat(0, damageAni);
+        animator.SetInteger("DamageTake", damageAni);
+        //animator.SetInterger("DamageTake", damageAni);
     }
+
+    public void setDamageAnim()
+    {
+		animator.SetInteger("DamageTake", -1);
+	}
 
 	#endregion
 

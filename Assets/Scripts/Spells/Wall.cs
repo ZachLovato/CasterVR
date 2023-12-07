@@ -82,7 +82,7 @@ public class Wall : MonoBehaviour
 			this.enabled = false;
 
             ps.Play();
-
+            GetComponent<AudioSource>().Play();
 
             if (TryGetComponent<DestoryTimer>(out DestoryTimer dt))
             {

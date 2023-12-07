@@ -86,6 +86,7 @@ public class Wind : MonoBehaviour
 					WindParticlePrefab[0].transform.rotation = Camera.main.transform.rotation;
 					WindParticlePrefab[0].transform.position = transform.position;
 					WindParticlePrefab[0].GetComponent<ParticleSystem>().Play();
+					AudioS.loop = false;
 					break;
 			}
 

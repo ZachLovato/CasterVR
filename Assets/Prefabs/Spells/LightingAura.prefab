@@ -135,9 +135,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 5301956244934167997, guid: 52415f8dad27c434e84be867bf3c219e, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.381
+  m_Volume: 1
   m_Pitch: -0.23
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   source: {fileID: 4352910767784687390}
   useTimer: 1
   startTimer: 1
-  timer: 1.6
+  timer: 1
 --- !u!135 &1562681526946963281
 SphereCollider:
   m_ObjectHideFlags: 0

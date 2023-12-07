@@ -22,7 +22,7 @@ public class PlayRandomAudio : MonoBehaviour
 
         if (!startTimer) return;
 
-        if (timer >= currTime)
+        if (currTime >= timer)
         {
             playRandAudio();
             currTime = 0;

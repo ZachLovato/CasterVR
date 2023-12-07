@@ -31,7 +31,7 @@ public class EnemyAttackItems : MonoBehaviour
         switch (type)
         {
             case ATK_TYPE.Fireball:
-                rb.AddForce(transform.forward * 5, ForceMode.Force);
+                rb.AddForce(transform.forward * 15, ForceMode.Force);
                 break;
             case ATK_TYPE.IceWall:
                 if (isFirstTime)
@@ -41,7 +41,7 @@ public class EnemyAttackItems : MonoBehaviour
                 }
                 break;
             case ATK_TYPE.ShockWave:
-				rb.AddForce(transform.forward * 10, ForceMode.Force);
+				rb.AddForce(transform.forward * 20, ForceMode.Force);
 				break;
             case ATK_TYPE.Wind:
                 break;
@@ -58,8 +58,9 @@ public class EnemyAttackItems : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                print("Hit Player");
-                GetComponent<Health>().AddHealth(-10);
+                //print(other.gameObject.name);
+                Health phealth = GetComponent<Health>();
+                if (phealth != null) phealth.AddHealth(-10);
 				Destroy(gameObject);
 			}
             else if (other.gameObject.tag != "Floor")

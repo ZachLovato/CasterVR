@@ -70,8 +70,8 @@ public class Health : MonoBehaviour
 			}
             else
             {
-				if (enemyController == null) enemyAttacker = GetComponent<EnemyAttacker>();
-				if (enemyController != null) enemyAttacker.DamageTaken();
+				if (enemyAttacker == null) enemyAttacker = GetComponent<EnemyAttacker>();
+				if (enemyAttacker != null) enemyAttacker.DamageTaken();
 			}
             
             
